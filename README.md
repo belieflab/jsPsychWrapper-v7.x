@@ -1,4 +1,4 @@
-# jsPsych Template v6.3
+# jsPsych Template v7.x
 
 ## Development Guide
 
