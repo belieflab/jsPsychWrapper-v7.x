@@ -7,6 +7,7 @@ require_once 'exp/conf.php';
 <html>
 
 <head>
+  <!-- add the title of the experiment that would be seen in the browser -->
   <title><?php echo $experimentName; ?></title>
   <!-- PHP wrapper libraries -->
   <script type="text/javascript" src="db/validate.js"></script>
