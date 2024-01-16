@@ -12,20 +12,18 @@ require_once 'exp/conf.php';
   <!-- PHP wrapper libraries -->
   <script type="text/javascript" src="db/validate.js"></script>
   <script type="text/javascript" src="db/jquery-3.5.1.min.js"></script>
-  <!-- jsPsych Content Delivery Network (CDN) libraries -->
+  <!-- jsPsych CDN libraries -->
   <script src="https://unpkg.com/jspsych@7.3.3"></script>
   <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
   <!-- jsPsych Plugins (add more here) -->
   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-video-keyboard-response@1.1.2"></script>
   </link>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body id='unload' onbeforeunload="return areYouSure()">
 <?php
-    if (isset($_GET["workerId"]) || isset($_GET["PROLIFIC_PID"]) || isset($_GET["participantId"])) {
+    if ($_GET["workerId"] || $_GET["PROLIFIC_PID"]) {
       switch ($language) {
         case 'english':
           include_once "include/consent/english.php";
@@ -39,7 +37,7 @@ require_once 'exp/conf.php';
           include_once "include/consent/german.php";
           break;
         }
-    } else if (isset($_GET["src_subject_id"])) {
+    } else if ($_GET["src_subject_id"]) {
       include_once "include/nda.php";
     } else {
       include_once "include/intake.php";

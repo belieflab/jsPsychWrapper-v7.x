@@ -1,13 +1,7 @@
 /* start the experiment */
 const startExperiment = () => {
     openFullscreen();
-    jsPsych.run({
-        timeline: timeline,
-        // show_progress_bar: true,
-        // preload_video: [],
-        // preload_audio: [],
-        // preload_images: [],
-    }); // new syntax
+    jsPsych.run(timeline); // new syntax
 };
 // write .csv to data/ directory
 const saveData = (name, data) => {

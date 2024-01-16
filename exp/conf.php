@@ -1,12 +1,12 @@
 <?php
 
-//***********************************//
-//   EXPERIMENT CONFIGURATION FILE   //
+  //***********************************//
+ //   EXPERIMENT CONFIGURATION FILE   //
 //***********************************//
 
 // SET EXPERIMENT NAME
-$experimentName = 'Experiment Name';
-$experimentAlias = 'experiment_alias';
+$experimentName = 'Stroop Task';
+$experimentAlias = 'stroop';
 
 // SELECT LANGUAGE
 $language = 'english';
@@ -14,37 +14,19 @@ $language = 'english';
 // $language = 'german';
 
 // SET SUBJECT IDENTIFICATION
-// MTurk case 
-if (isset($_GET["workerId"])) {
+if ($_GET["workerId"]) {
   $workerId = $_GET["workerId"];
   $subjectId = $_GET["workerId"];
 }
-// Prolific case
-if (isset($_GET["PROLIFIC_PID"])) {
+
+if ($_GET["PROLIFIC_PID"]) {
   $PROLIFIC_PID = $_GET["PROLIFIC_PID"];
   $subjectId = $_GET["PROLIFIC_PID"];
 }
-// Connect case
-if (isset($_GET["participantId"])) {
-  $participantId = $_GET["participantId"];
-  $subjectId = $_GET["participantId"];
-}
 
-if (isset($_GET["src_subject_id"])) {
+if ($_GET["src_subject_id"]) {
   $src_subject_id = $_GET["src_subject_id"];
   $subjectId = $_GET["src_subject_id"];
-  
-  // these are omnibus data base variables which will get passed from participant portal
-  $studyId = $_GET["studyId"];
-  $candidateId = $_GET["candidateId"];
-  // these are NDA required variables which will get passed from participant portal
-  $subjectKey = $_GET["subjectkey"];
-  $consortId = $_GET["src_subject_id"];
-  $sexAtBirth = $_GET["sex"];
-  $institutionAlias = $_GET["site"];
-  $ageInMonths = $_GET["interview_age"];
-  $groupStatus = $_GET["phenotype"];
-  $visit = $_GET["visit"];
 }
 
 /**
@@ -53,7 +35,7 @@ if (isset($_GET["src_subject_id"])) {
  * @return mixed Either the hash or a boolean false
  */
 
-function gitCommitHash( $branch='master' ) {
+ function gitCommitHash( $branch='master' ) {
   if ( $hash = file_get_contents( sprintf( '.git/refs/heads/%s', $branch ) ) ) {
     return "version: ".strval(substr(trim($hash),-7));
   } else {
@@ -65,31 +47,21 @@ function gitCommitHash( $branch='master' ) {
 <script type="text/javascript">
     const experimentName = "<?php echo $experimentName; ?>";
     const experimentAlias = "<?php echo $experimentAlias; ?>";
+    const workerId = "<?php echo $workerId; ?>";
+    const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
+    let src_subject_id = "<?php echo $src_subject_id; ?>";
+    let subjectId = "<?php echo $subjectId; ?>";
     const language = "<?php echo $language; ?>";
     const adminEmail = "joshua.kenney@yale.edu";
-    // these are NDA required variables which will get passed from participant portal
-    if (getParamFromURL("workerId")) {
-      const workerId = "<?php echo $workerId; ?>";
-      const subjectId = "<?php echo $workerId; ?>";
-    }
-    if (getParamFromURL("PROLIFIC_PID")) {
-      const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
-      const subjectId = "<?php echo $PROLIFIC_PID; ?>";
-    }
-    if (getParamFromURL("participantId")) {
-      const participantId = "<?php echo $participantId; ?>";
-      const subjectId = "<?php echo $participantId; ?>";
-    }
-    if (getParamFromURL("src_subject_id")) {
-      const src_subject_id = "<?php echo $src_subject_id; ?>";
-      const subjectId = "<?php echo $src_subject_id; ?>";
-      const GUID = "<?php echo $subjectKey?>";
-      const subjectID = "<?php echo $consortId?>";
-      const sexAtBirth = "<?php echo $sexAtBirth?>";
-      const siteNumber = "<?php echo $institutionAlias?>";
-      const ageAtAssessment = "<?php echo $ageInMonths?>";
-      const groupStatus = "<?php echo $groupStatus?>";
-      const visit = "<?php echo $visit?>";
-      const feedbackLink = "https://belieflab.yale.edu/omnibus/eCRFs/feedback/tasks/kamin.php?candidateId=<?php echo $candidateId?>&studyId=<?php echo $studyId?>";
-    }  
+    const feedbackLink = "https://belieflab.yale.edu/omnibus/eCRFs/feedback/tasks/kamin.php?candidateId=<?php echo $candidateId?>&studyId=<?php echo $studyId?>";
+    // these are NDA required variables which will get passed from participant portal 
+    const GUID = "<?php echo $subjectKey?>";
+    const subjectID = "<?php echo $consortId?>";
+    const sexAtBirth = "<?php echo $sexAtBirth?>";
+    const siteNumber = "<?php echo $institutionAlias?>";
+    const ageAtAssessment = "<?php echo $ageInMonths?>";
+    const groupStatus = "<?php echo $groupStatus?>";
+    const visit = "<?php echo $visit?>";
 </script>
+
+
