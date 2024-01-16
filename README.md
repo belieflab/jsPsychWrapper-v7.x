@@ -1,5 +1,8 @@
 # jsPsych Template v7.x
 
+## Dependencies
+PHP Version 7.x
+
 ## Development Guide
 
 #### Install and configure XAMPP:

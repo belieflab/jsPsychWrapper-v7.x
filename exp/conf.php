@@ -24,9 +24,26 @@ if ($_GET["PROLIFIC_PID"]) {
   $subjectId = $_GET["PROLIFIC_PID"];
 }
 
+if ($_GET["participantId"]) {
+  $PROLIFIC_PID = $_GET["participantId"];
+  $subjectId = $_GET["participantId"];
+}
+
 if ($_GET["src_subject_id"]) {
   $src_subject_id = $_GET["src_subject_id"];
   $subjectId = $_GET["src_subject_id"];
+  
+  // these are omnibus data base variables which will get passed from participant portal
+  $studyId = $_GET["studyId"];
+  $candidateId = $_GET["candidateId"];
+  // these are NDA required variables which will get passed from participant portal
+  $subjectKey = $_GET["subjectkey"];
+  $consortId = $_GET["src_subject_id"];
+  $sexAtBirth = $_GET["sex"];
+  $institutionAlias = $_GET["site"];
+  $ageInMonths = $_GET["interview_age"];
+  $groupStatus = $_GET["phenotype"];
+  $visit = $_GET["visit"];
 }
 
 /**
