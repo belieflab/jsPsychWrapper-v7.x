@@ -22,6 +22,9 @@ $language = 'english';
   if (isset($_GET["workerId"])) {
   $workerId = isset($_GET["workerId"]) ? $_GET["workerId"] : null;
   $subjectId = isset($_GET["workerId"]) ? $_GET["workerId"] : null;
+  } else {
+    $workerId = null;
+    $subjectId = null;
   }
 
   if (isset($_GET["PROLIFIC_PID"])) {
