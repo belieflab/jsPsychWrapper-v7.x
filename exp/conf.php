@@ -14,22 +14,22 @@ $language = 'english';
 // $language = 'german';
 
 // SET SUBJECT IDENTIFICATION
-if ($_GET["workerId"]) {
+if (isset($_GET["workerId"])) {
   $workerId = $_GET["workerId"];
   $subjectId = $_GET["workerId"];
 }
 
-if ($_GET["PROLIFIC_PID"]) {
+if (isset($_GET["PROLIFIC_PID"])) {
   $PROLIFIC_PID = $_GET["PROLIFIC_PID"];
   $subjectId = $_GET["PROLIFIC_PID"];
 }
 
-if ($_GET["participantId"]) {
+if (isset($_GET["participantId"])) {
   $participantId = $_GET["participantId"];
   $subjectId = $_GET["participantId"];
 }
 
-if ($_GET["src_subject_id"]) {
+if (isset($_GET["src_subject_id"])) {
   $src_subject_id = $_GET["src_subject_id"];
   $subjectId = $_GET["src_subject_id"];
   

@@ -23,7 +23,7 @@ require_once 'exp/conf.php';
 
 <body id='unload' onbeforeunload="return areYouSure()">
 <?php
-    if ($_GET["workerId"] || $_GET["PROLIFIC_PID"] || $_GET["participantId"]) {
+    if (isset($_GET["workerId"]) || isset($_GET["PROLIFIC_PID"]) || isset($_GET["participantId"])) {
       switch ($language) {
         case 'english':
           include_once "include/consent/english.php";
@@ -37,7 +37,7 @@ require_once 'exp/conf.php';
           include_once "include/consent/german.php";
           break;
         }
-    } else if ($_GET["src_subject_id"]) {
+    } else if (isset($_GET["src_subject_id"])) {
       include_once "include/nda.php";
     } else {
       include_once "include/intake.php";
