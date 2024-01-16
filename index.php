@@ -12,7 +12,7 @@ require_once 'exp/conf.php';
   <!-- PHP wrapper libraries -->
   <script type="text/javascript" src="db/validate.js"></script>
   <script type="text/javascript" src="db/jquery-3.5.1.min.js"></script>
-  <!-- jsPsych CDN libraries -->
+  <!-- jsPsych CDN (content delivery network) libraries -->
   <script src="https://unpkg.com/jspsych@7.3.3"></script>
   <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
   <!-- jsPsych Plugins (add more here) -->

@@ -25,7 +25,7 @@ if ($_GET["PROLIFIC_PID"]) {
 }
 
 if ($_GET["participantId"]) {
-  $PROLIFIC_PID = $_GET["participantId"];
+  $participantId = $_GET["participantId"];
   $subjectId = $_GET["participantId"];
 }
 
@@ -66,6 +66,7 @@ if ($_GET["src_subject_id"]) {
     const experimentAlias = "<?php echo $experimentAlias; ?>";
     const workerId = "<?php echo $workerId; ?>";
     const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
+    const participantId = "<?php echo $participantId; ?>";
     let src_subject_id = "<?php echo $src_subject_id; ?>";
     let subjectId = "<?php echo $subjectId; ?>";
     const language = "<?php echo $language; ?>";
