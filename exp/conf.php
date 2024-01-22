@@ -19,28 +19,30 @@ $language = 'english';
 
 <?php
 // SET SUBJECT IDENTIFICATION
-  if (isset($_GET["workerId"])) {
+if (isset($_GET["workerId"])) {
   $workerId = isset($_GET["workerId"]) ? $_GET["workerId"] : null;
   $subjectId = isset($_GET["workerId"]) ? $_GET["workerId"] : null;
   } else {
-    $workerId = null;
-    $subjectId = null;
+    $PROLIFIC_PID = null;
+    $participantId = null;
   }
 
   if (isset($_GET["PROLIFIC_PID"])) {
   $PROLIFIC_PID = isset($_GET["PROLIFIC_PID"]) ? $_GET["PROLIFIC_PID"] : null;
   $subjectId = isset($_GET["PROLIFIC_PID"]) ? $_GET["PROLIFIC_PID"] : null;
-  $workerId = null;
   } else {
-    $PROLIFIC_PID = null;
+    $workerId = null;
+    $participantId = null;
   }
+
   if (isset($_GET["participantId"])) {
   $participantId = isset($_GET["participantId"]) ? $_GET["participantId"] : null;
   $subjectId = isset($_GET["participantId"]) ? $_GET["participantId"] : null;
-  $workerId = null;
   } else {
-    $participantId = null;
+    $workerId = null;
+    $PROLIFIC_PID = null;
   }
+  
   if (isset($_GET["src_subject_id"])) {
   $src_subject_id = isset($_GET["src_subject_id"]) ? $_GET["src_subject_id"] : null;
   $subjectId = isset($_GET["src_subject_id"]) ? $_GET["src_subject_id"] : null;

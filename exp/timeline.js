@@ -43,7 +43,7 @@ const trial = {
         colour: jsPsych.timelineVariable("colour"),
         text: jsPsych.timelineVariable("text"),
         condition: jsPsych.timelineVariable("condition"),
-        workerId: workerId,
+        subjectId: subjectId,
         interview_date: today,
     },
 };
