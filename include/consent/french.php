@@ -1,4 +1,4 @@
-<script type="text/javascript" src="db/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="wrap/db/jquery-3.5.1.min.js"></script>
 
 <div class="screening" style="background-color:darkgray; text-align:center; margin:35px; vertical-align:middle">
 <br>

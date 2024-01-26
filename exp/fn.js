@@ -1,4 +1,5 @@
 /* start the experiment */
+
 const startExperiment = () => {
     openFullscreen();
     jsPsych.run(timeline); // new syntax
