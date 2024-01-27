@@ -8,12 +8,33 @@ const jsPsych = initJsPsych({
 const timeline = [];
 
 /*define instructions*/
+const config = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus:
+        `
+        <p>Hello!</p>
+        <p>Please edit exp/conf.php to configure the experiment.</p>
+        <p>You may set the experiment name: ` +
+        experimentName +
+        `</p>
+        <p>Experiment alias: ` +
+        experimentAlias +
+        `</p>
+        <p>And the language: ` +
+        language +
+        `</p>
+        <p>You may also set other variables as you choose.</p>
+        <p>Press Space to continue.</p>
+    `,
+    key_forward: " ",
+};
+
 const instructions = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `
-    <p> Hello Ivy! Welcome to the server side experiment!</p>
-    <p> In this experiment you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent </p>
-    <p> Press Space to continue. </p>
+        <p>Welcome to the server-side experiment!</p>
+        <p>In this experiment, you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent.</p>
+        <p>Press Space to continue.</p>
     `,
     key_forward: " ",
 };

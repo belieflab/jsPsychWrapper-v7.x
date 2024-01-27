@@ -1,6 +1,7 @@
 <?php
-require_once 'jsPsychWrapper-v7.x/db/data.php';
-require_once 'jsPsychWrapper-v7.x/exp/conf.php';
+require_once 'jsPsychWrapper-v7.x/lib/data.php';
+require_once 'jsPsychWrapper-v7.x/lib/nda.php';
+require_once 'exp/conf.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +11,8 @@ require_once 'jsPsychWrapper-v7.x/exp/conf.php';
   <!-- add the title of the experiment that would be seen in the browser -->
   <title><?php echo $experimentName; ?></title>
   <!-- PHP wrapper libraries -->
-  <script type="text/javascript" src="jsPsychWrapper-v7.x/db/validate.js"></script>
-  <script type="text/javascript" src="jsPsychWrapper-v7.x/db/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="jsPsychWrapper-v7.x/lib/validate.js"></script>
+  <script type="text/javascript" src="jsPsychWrapper-v7.x/lib/jquery-3.5.1.min.js"></script>
   <!-- jsPsych CDN (content delivery network) libraries -->
   <script src="https://unpkg.com/jspsych@7.3.3"></script>
   <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
@@ -20,8 +21,8 @@ require_once 'jsPsychWrapper-v7.x/exp/conf.php';
   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
   <!-- general styling -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!-- confidence bar styling -->
-  <link rel="stylesheet" type="text/css" href="css/confidence.css">
+  <!-- additional styling -->
+  <!-- <link rel="stylesheet" type="text/css" href="css/foo.css"> -->
 
 </head>
 
@@ -53,7 +54,7 @@ require_once 'jsPsychWrapper-v7.x/exp/conf.php';
   <script type="text/javascript" src="jsPsychWrapper-v7.x/exp/fn.js"></script>
   <script type="text/javascript" src="jsPsychWrapper-v7.x/exp/lang.js"></script>
   <!-- load experiment dependencies -->
-  <script type="text/javascript" src="exp/conf.js"></script>
+  <!-- <script type="text/javascript" src="exp/conf.js"></script> -->
   <script type="text/javascript" src="exp/fn.js"></script>
   <script type="text/javascript" src="exp/var.js"></script>
   <script>
