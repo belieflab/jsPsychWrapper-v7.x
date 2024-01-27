@@ -54,7 +54,6 @@ require_once 'exp/conf.php';
   <script type="text/javascript" src="wrap/exp/fn.js"></script>
   <script type="text/javascript" src="wrap/exp/lang.js"></script>
   <!-- load experiment dependencies -->
-  <!-- <script type="text/javascript" src="exp/conf.js"></script> -->
   <script type="text/javascript" src="exp/fn.js"></script>
   <script type="text/javascript" src="exp/var.js"></script>
   <script>
