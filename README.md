@@ -1,7 +1,7 @@
 # jsPsych Template v7.x
-
+PHP wrapper that works with latest jsPsych library (version 7); it is intended to be added to an experiment as a submodule `wrap/` using the createExperiment repository.
 ## Dependencies
-PHP Version 7.x
+PHP Version 7.x or 8.x
 
 ## Development Guide
 
@@ -24,16 +24,10 @@ PHP Version 7.x
 
 7. Clone into htdocs:
 
-        git clone https://github.com/belieflab/jsPsychWrapper-v6.3.git
+        git clone https://github.com/belieflab/createExperiment.git
 
-#### Modifty permissions:
-8. Copy this text into your terminal from the htdocs folder (the folder you are already in).
-
-        chmod -R 777 jsPsychWrapper-v6.3/
-        
 #### Start experiment:     
-9. Click this URL: [http://localhost/jsPsychWrapper-v6.3](http://localhost/jsPsychWrapper-v6.3)
-      
+8. Run `init.sh`
       
       
 ### BRAVO! You're a XAMPP master.
