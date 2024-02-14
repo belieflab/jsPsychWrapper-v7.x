@@ -11,26 +11,20 @@
             <div id="consentForm" class="consent-box"> 
                 <?php switch ($language) {
                         case 'english':
-                        include_once "wrap/include/consent/english.php";
+                        include_once "wrap/include/lang/english.php";
                         break;
                 
                         case 'french':
-                        include_once "wrap/include/consent/french.php";
+                        include_once "wrap/include/lang/french.php";
                         break;
                 
                         case 'german':
-                        include_once "wrap/include/consent/german.php";
+                        include_once "wrap/include/lang/german.php";
                         break;
                 } ?>
             </div>
         </div>
         <button id="submitButton" class="loadMain" onclick="validateConsent()" type="button">Consent</button>
-    </div>
-
-    <div id="validation" style="display: none">
-        <form>
-            <!-- Form content -->
-        </form>
     </div>
 
     <div id="load" style="display: none">
