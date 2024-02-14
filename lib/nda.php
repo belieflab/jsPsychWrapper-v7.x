@@ -1,62 +1,44 @@
-
 <?php
-// SET SUBJECT IDENTIFICATION
-// DO NOT MODIFY THIS FILE
+// Initialize variables to null
+$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectKey = $consortId = $sexAtBirth = $institutionAlias = $ageInMonths = $groupStatus = $visit = $week = null;
 
+// Check for workerId and set $subjectId
 if (isset($_GET["workerId"])) {
-  $workerId = isset($_GET["workerId"]) ? $_GET["workerId"] : null;
-  $subjectId = isset($_GET["workerId"]) ? $_GET["workerId"] : null;
-  } else {
-    $PROLIFIC_PID = null;
-    $participantId = null;
-  }
+    $workerId = $_GET["workerId"];
+    $subjectId = $workerId;
+}
 
-  if (isset($_GET["PROLIFIC_PID"])) {
-  $PROLIFIC_PID = isset($_GET["PROLIFIC_PID"]) ? $_GET["PROLIFIC_PID"] : null;
-  $subjectId = isset($_GET["PROLIFIC_PID"]) ? $_GET["PROLIFIC_PID"] : null;
-  } else {
-    $workerId = null;
-    $participantId = null;
-  }
+// Check for PROLIFIC_PID and set $subjectId
+if (isset($_GET["PROLIFIC_PID"])) {
+    $PROLIFIC_PID = $_GET["PROLIFIC_PID"];
+    $subjectId = $PROLIFIC_PID;
+}
 
-  if (isset($_GET["participantId"])) {
-  $participantId = isset($_GET["participantId"]) ? $_GET["participantId"] : null;
-  $subjectId = isset($_GET["participantId"]) ? $_GET["participantId"] : null;
-  } else {
-    $workerId = null;
-    $PROLIFIC_PID = null;
-  }
-  
-  if (isset($_GET["src_subject_id"])) {
-  $src_subject_id = isset($_GET["src_subject_id"]) ? $_GET["src_subject_id"] : null;
-  $subjectId = isset($_GET["src_subject_id"]) ? $_GET["src_subject_id"] : null;
-  // these are omnibus data base variables which will get passed from participant portal
-  $studyId = isset($_GET["studyId"]) ? $_GET["studyId"] : null;
-  $candidateId = isset($_GET["candidateId"]) ? $_GET["candidateId"] : null;
-  // these are NDA required variables which will get passed from participant portal
-  $subjectKey = isset($_GET["subjectkey"]) ? $_GET["subjectkey"] : null;
-  $consortId = isset($_GET["src_subject_id"]) ? $_GET["src_subject_id"] : null;
-  $sexAtBirth = isset($_GET["sex"]) ? $_GET["sex"] : null;
-  $institutionAlias = isset($_GET["site"]) ? $_GET["site"] : null;
-  $ageInMonths = isset($_GET["interview_age"]) ? $_GET["interview_age"] : null;
-  $groupStatus = isset($_GET["phenotype"]) ? $_GET["phenotype"] : null;
-  $visit = isset($_GET["visit"]) ? $_GET["visit"] : null;
-  $workerId = null;
-  } else {
-    $src_subject_id = null;
-    $candidateId = null;
-    $studyId = null;
-    $subjectKey = null;
-    $consortId = null;
-    $sexAtBirth = null;
-    $institutionAlias = null;
-    $ageInMonths = null;
-    $groupStatus = null;
-    $visit = null;
-  }
+// Check for participantId and set $subjectId
+if (isset($_GET["participantId"])) {
+    $participantId = $_GET["participantId"];
+    $subjectId = $participantId;
+}
 
-  
+// Check for src_subject_id and set related variables
+if (isset($_GET["src_subject_id"])) {
+    $src_subject_id = $_GET["src_subject_id"];
+    $subjectId = $src_subject_id;
+    $consortId = $src_subject_id; // Assuming consortId is intended to be the same as src_subject_id
 
+    // Set omnibus database variables
+    $studyId = $_GET["studyId"] ?? null;
+    $candidateId = $_GET["candidateId"] ?? null;
+
+    // Set NDA required variables
+    $subjectKey = $_GET["subjectkey"] ?? null;
+    $sexAtBirth = $_GET["sex"] ?? null;
+    $institutionAlias = $_GET["site"] ?? null;
+    $ageInMonths = $_GET["interview_age"] ?? null;
+    $groupStatus = $_GET["phenotype"] ?? null;
+    $visit = $_GET["visit"] ?? null;
+    $week = $_GET["week"] ?? null;
+}
 
 /**
  * Get the hash of the current git HEAD
@@ -91,5 +73,6 @@ if (isset($_GET["workerId"])) {
     const ageAtAssessment = "<?php echo $ageInMonths?>";
     const groupStatus = "<?php echo $groupStatus?>";
     const visit = "<?php echo $visit?>";
+    const week = "<?php echo $week?>";
 
 </script>
