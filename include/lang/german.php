@@ -58,7 +58,7 @@
       <br><br>
       <u><b>Fragen oder Bedenken</b></u>
       <br>
-      Wenn Sie Fragen oder Bedenken bezüglich des Experiments haben, können Sie uns hier im Labor per E-Mail an BLAMLabRequester@gmail.com kontaktieren. Wenn Sie allgemeine Fragen zu Ihren Rechten als Forschungsteilnehmer haben, können Sie sich unter 203-785-4688 oder human.subjects@yale.edu (HSC # 2000022111) an das Human Investigation Committee der Yale University wenden.
+      Wenn Sie Fragen oder Bedenken bezüglich des Experiments haben, können Sie uns hier im Labor per E-Mail an BLAMLabRequester@gmail.com kontaktieren. Wenn Sie allgemeine Fragen zu Ihren Rechten als Forschungsteilnehmer haben, können Sie sich unter 203-785-4688 oder human.subjects@yale.edu (HIC # 2000022111) an das Human Investigation Committee der Yale University wenden.
 
     </p>
   </div>

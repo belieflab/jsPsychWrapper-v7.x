@@ -58,7 +58,7 @@
       <br><br>
       <u><b>Questions ou préoccupations</b></u>
       <br>
-      Si vous avez des questions ou des préoccupations concernant l'expérience, vous pouvez nous contacter ici au laboratoire en envoyant un e-mail à BLAMLabRequester@gmail.com Si vous avez des questions générales sur vos droits en tant que participant à la recherche, vous pouvez contacter le comité d'enquête humaine de l'Université de Yale au 203 -785-4688 ou human.subjects@yale.edu (HSC # 2000022111).
+      Si vous avez des questions ou des préoccupations concernant l'expérience, vous pouvez nous contacter ici au laboratoire en envoyant un e-mail à BLAMLabRequester@gmail.com Si vous avez des questions générales sur vos droits en tant que participant à la recherche, vous pouvez contacter le comité d'enquête humaine de l'Université de Yale au 203 -785-4688 ou human.subjects@yale.edu (HIC # 2000022111).
 
     </p>
   </div>
