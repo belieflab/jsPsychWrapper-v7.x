@@ -341,7 +341,7 @@ p.bold {
     pointer-events: none;
 }
 
-/* hide cursor */
+/* show cursor */
 .showCursor {
     cursor: default;
 }
@@ -371,12 +371,6 @@ p.bold {
     text-align: left;
     max-width: 90%; /* Prevents the box from being too wide on larger screens */
     margin: auto; /* Centers the box */
-}
-
-.loadMain {
-    display: inline-block; /* Better control over button styling */
-    margin: 2vw auto;
-    padding: 10px 20px; /* Sufficient padding for tap targets on mobile */
 }
 
 @media (max-width: 768px) {
