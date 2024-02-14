@@ -321,3 +321,43 @@ p.bold {
 .showCursor {
     cursor: default;
 }
+
+/* new consent */
+.screening {
+    background-color: darkgray;
+    text-align: center;
+    margin: 2vw; /* Use viewport width for responsive margins */
+    padding: 1vw;
+}
+
+.consent-title {
+    text-align: center;
+}
+
+.centeredDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.consent-box,
+.consent {
+    color: black;
+    text-align: left;
+    max-width: 90%; /* Prevents the box from being too wide on larger screens */
+    margin: auto; /* Centers the box */
+}
+
+.loadMain {
+    display: inline-block; /* Better control over button styling */
+    margin: 2vw auto;
+    padding: 10px 20px; /* Sufficient padding for tap targets on mobile */
+}
+
+@media (max-width: 768px) {
+    .consent-box,
+    .consent {
+        max-width: 95%; /* Allows more width on smaller screens for better readability */
+    }
+}
