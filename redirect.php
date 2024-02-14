@@ -1,12 +1,15 @@
 <?php
-require_once 'exp/conf.php';
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <title><?php echo $experimentName; ?></title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.title = experimentName;
+    });
+  </script>
 </head>
 
 <body id='unload' onbeforeunload="return areYouSure()">
