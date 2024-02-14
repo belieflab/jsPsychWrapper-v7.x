@@ -1,17 +1,4 @@
-<script type="text/javascript" src="wrap/lib/jquery-3.5.1.min.js"></script>
 
-<div class="screening" style="background-color:darkgray; text-align:center; margin:35px; vertical-align:middle">
-<br>
-
-<div id = "consent">
-<h1 id="hide" style="text-align:center;">Étudier le formulaire de consentement</h1>
-<div class="loading centeredDiv">
-    <h1 class="loading">Chargement...</h1>
-  </div>
-  <div id="consentHolder" class="consent centeredDiv">
-  <h3 id="consentPreamble" class="consent">Pour que nous puissions effectuer ce essai en ligne, nous devons inclure le formulaire de consentement standard ci-dessous: <br /> <br /> </h3>
-
-<div id="consentForm" class="consent consent-box"> 
     <h2 id="consentHeading" class="consent">
     CONSENTEMENT À LA PARTICIPATION À UN PROJET DE RECHERCHE 200 FR. 1 (2016-2)
       <br>
@@ -61,27 +48,3 @@
       Si vous avez des questions ou des préoccupations concernant l'expérience, vous pouvez nous contacter ici au laboratoire en envoyant un e-mail à BLAMLabRequester@gmail.com Si vous avez des questions générales sur vos droits en tant que participant à la recherche, vous pouvez contacter le comité d'enquête humaine de l'Université de Yale au 203 -785-4688 ou human.subjects@yale.edu (HIC # 2000022111).
 
     </p>
-  </div>
-  </div>
-  <button style="float:center; margin:35px; vertical-align:middle" id="submitButton" class="loadMain" onclick="validateConsent()" type="button"><script>consent</script></button></div>
-  
-<div id="validation" style="display: none">
-    <br>
-    <form>
-</form>
-</div>
-<div>
-
-<div id="load" style="display: none">
-<h3 id='pass'>Toutes les règles de validation ont été passées avec succès. Cliquez pour charger l'expérience.</h3>
-<button id="nextButton" class="noCursor" onclick="startExperiment()"><script>load</script></button>
-<!-- <p id="nextButton" style="display: none" >please make sure you are in a quiet place. When you are ready to begin, click 'START'</p> -->
-<br>
-</div>
-<script>$("button.loadMain").click(() => {
-      $.getScript("exp/timeline.js");
-      // $.getScript("exp/main.js"); 
-    }); </script>
-
-
-  

@@ -1,17 +1,4 @@
-<script type="text/javascript" src="wrap/lib/jquery-3.5.1.min.js"></script>
 
-<div class="screening" style="background-color:darkgray; text-align:center; margin:35px; vertical-align:middle">
-<br>
-
-<div id = "consent">
-<h1 id="hide" style="text-align:center;">Einverständniserklärung studieren</h1>
-<div class="loading centeredDiv">
-    <h1 class="loading">Wird geladen...</h1>
-  </div>
-  <div id="consentHolder" class="consent centeredDiv">
-  <h3 id="consentPreamble" class="consent">Damit wir diesen experiment online durchführen können, müssen wir das unten stehende Standard-Einverständnisformular einfügen: <br /> <br /> </h3>
-
-<div id="consentForm" class="consent consent-box"> 
     <h2 id="consentHeading" class="consent">
     ZUSTIMMUNG ZUR TEILNAHME AN EINEM FORSCHUNGSPROJEKT 200 FR. 1 (2016-2)
       <br>
@@ -61,27 +48,3 @@
       Wenn Sie Fragen oder Bedenken bezüglich des Experiments haben, können Sie uns hier im Labor per E-Mail an BLAMLabRequester@gmail.com kontaktieren. Wenn Sie allgemeine Fragen zu Ihren Rechten als Forschungsteilnehmer haben, können Sie sich unter 203-785-4688 oder human.subjects@yale.edu (HIC # 2000022111) an das Human Investigation Committee der Yale University wenden.
 
     </p>
-  </div>
-  </div>
-  <button style="float:center; margin:35px; vertical-align:middle" id="submitButton" class="loadMain" onclick="validateConsent()" type="button"><script>consent</script></button></div>
-  
-<div id="validation" style="display: none">
-    <br>
-    <form>
-</form>
-</div>
-<div>
-
-<div id="load" style="display: none">
-<h3 id='pass'>Alle Validierungsregeln wurden erfolgreich bestanden. Klicken Sie hier, um das Experiment zu laden.</h3>
-<button id="nextButton" class="noCursor" onclick="startExperiment()"><script>load</script></button>
-<!-- <p id="nextButton" style="display: none" >please make sure you are in a quiet place. When you are ready to begin, click 'START'</p> -->
-<br>
-</div>
-<script>$("button.loadMain").click(() => {
-      $.getScript("exp/timeline.js");
-      // $.getScript("exp/main.js"); 
-    }); </script>
-
-
-  
