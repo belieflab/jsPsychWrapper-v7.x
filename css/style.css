@@ -1,3 +1,13 @@
+:root.light-theme {
+    --main-color: black; /* Switch main color to white */
+    --background-color: #f5f5f5; /* Assuming you want to invert the background as well */
+}
+
+:root.dark-theme {
+    --main-color: #f5f5f5; /* Assuming you want to invert the background as well */
+    --background-color: black; /* Switch main color to white */
+}
+
 .stim {
     padding: 25px 25px 25px 25px;
     height: 200px;
@@ -5,12 +15,18 @@
 }
 
 body {
-    background-color: black;
+    background-color: var(
+        --background-color
+    ); /* Background color, if you've defined it */
     font-family: Helvetica, Arial, sans-serif;
 }
 
 p {
-    color: white;
+    color: var(--main-color); /* Text color */
+}
+
+.error-page {
+    color: red;
 }
 
 .attrition,
@@ -228,7 +244,9 @@ p.bold {
 .sk-cube-grid .sk-cube {
     width: 33%;
     height: 33%;
-    background-color: white;
+    background-color: var(
+        --main-color
+    ); /* Background color, if you've defined it */
     float: left;
     -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
     animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
@@ -360,4 +378,8 @@ p.bold {
     .consent {
         max-width: 95%; /* Allows more width on smaller screens for better readability */
     }
+}
+
+.data-save-animation {
+    color: var(--main-color); /* Text color */
 }

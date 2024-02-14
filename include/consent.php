@@ -9,19 +9,7 @@
         <div id="consentHolder" class="consent centeredDiv">
             <h3 id="consentPreamble">In order for us to conduct this experiment online, we need to include the standard consent form below: <br /> <br /> </h3>
             <div id="consentForm" class="consent-box"> 
-                <?php switch ($language) {
-                        case 'english':
-                        include_once "wrap/include/lang/english.php";
-                        break;
-                
-                        case 'french':
-                        include_once "wrap/include/lang/french.php";
-                        break;
-                
-                        case 'german':
-                        include_once "wrap/include/lang/german.php";
-                        break;
-                } ?>
+                <!-- Language-specific content will be loaded here by JavaScript -->
             </div>
         </div>
         <button id="submitButton" class="loadMain" onclick="validateConsent()" type="button">Consent</button>

@@ -1,10 +1,10 @@
-translate();
+translate(language);
 
 switch (language) {
-    case 'english':
+    case "english":
         break;
-    case 'french':
+    case "french":
         break;
-    case 'german':
+    case "german":
         break;
 }
