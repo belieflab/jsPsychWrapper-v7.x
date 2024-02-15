@@ -67,41 +67,6 @@ const getParamFromURL = (name) => {
     if (results == null) return "";
     else return results[1];
 };
-/**
- * Translates the text of consent-related buttons based on the selected language.
- * Defaults to English if the selected language is unsupported.
- *
- * @param {string} language - The selected language for translation. Supported languages
- *                            include English, French, and German. Defaults to English
- *                            for any other inputs or unsupported languages.
- */
-const translate = (language) => {
-    let consent; // Variable to store the translated text for the consent button.
-    let load; // Variable to store the translated text for the load button.
-
-    // Determine the translation based on the selected language.
-    switch (language) {
-        case "french":
-            consent = "CONSENTEMENT";
-            load = "CHARGE";
-            break;
-
-        case "german":
-            consent = "ZUSTIMMUNG";
-            load = "BELASTUNG";
-            break;
-
-        default: // Default case for English and unsupported languages.
-            consent = "CONSENT";
-            load = "LOAD";
-            break;
-    }
-
-    // Update the webpage elements with the translated text.
-    // The 'submitButton' is for user consent, and the 'nextButton' is for proceeding.
-    document.getElementById("submitButton").innerHTML = consent; // Update consent button
-    document.getElementById("nextButton").innerHTML = load; // Update load/next button
-};
 
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
