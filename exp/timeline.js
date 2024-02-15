@@ -101,12 +101,15 @@ const dataSave = {
             })
             .catch((error) => {
                 console.log("Failed to save data.", error);
+                // Check if the error object has 'error' property and use it, otherwise convert object to string
+                const errorMessage = error.error || JSON.stringify(error);
                 // Update the stimulus content directly via DOM manipulation
                 const dataFailure = `
                 <div class="error-page">
                     <p>Oh no!</p>
                     <p>An error has occured and your data has not been saved.</p>
                     <p>Please wait for the experimenter to continue.</p>
+                    <p>${errorMessage}</p>
                 </div>`;
                 document.querySelector("#jspsych-content").innerHTML =
                     dataFailure;
