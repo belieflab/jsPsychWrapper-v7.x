@@ -9,6 +9,10 @@ const experimentAlias = "stroop"; // Unique identifier for the experiment, used 
 // Experiment Language
 const language = "english"; // Language setting for the experiment
 
+// Debug Mode
+// Options: true, false
+const debug = false; // Default debug mode setting for the experiment
+
 // User Interface Theme
 // Options: "light", "dark"
 const theme = "light"; // Default theme setting for the user interface
