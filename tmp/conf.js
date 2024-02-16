@@ -2,16 +2,16 @@
 //   EXPERIMENT CONFIGURATION FILE   //
 //***********************************//
 
+// Debug Mode
+// Options: true, false
+const debug = false; // Default debug mode setting for the experiment
+
 // Experiment Name
 const experimentName = "Stroop Task"; // Name displayed in the browser title bar
 const experimentAlias = "stroop"; // Unique identifier for the experiment, used in data saving
 
 // Experiment Language
 const language = "english"; // Language setting for the experiment
-
-// Debug Mode
-// Options: true, false
-const debug = false; // Default debug mode setting for the experiment
 
 // User Interface Theme
 // Options: "light", "dark"
