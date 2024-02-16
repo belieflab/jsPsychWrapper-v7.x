@@ -14,7 +14,7 @@ const config = {
     key_forward: " ",
 };
 
-const instructions = {
+const welcome = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: english2,
     key_forward: " ",
