@@ -17,3 +17,5 @@ const version = "standard"; // Current version of the experiment
 // Add additional global configuration constants here
 
 // Note: Uncomment the desired options. Ensure only one option per setting is active at a time.
+const adminEmail = undefined;
+const feedbackLink = undefined;
