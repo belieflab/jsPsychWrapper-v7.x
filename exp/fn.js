@@ -4,6 +4,7 @@ const startExperiment = () => {
     openFullscreen();
     jsPsych.run(timeline); // new jsPsychg 7.x syntax
 };
+
 // write .csv to data/ directory
 const saveData = (name, data, callback) => {
     const xhr = new XMLHttpRequest();
@@ -124,3 +125,55 @@ switch (theme) {
         document.documentElement.classList.add("light-theme"); // Adds the white theme
         break;
 }
+
+// Function to shuffle the keys of an object randomly while preserving corresponding values
+// order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
+/**
+ * Translates the text of consent-related buttons based on the selected language.
+ * Defaults to English if the selected language is unsupported.
+ *
+ * @param {string} language - The selected language for translation. Supported languages
+ *                            include English, French, and German. Defaults to English
+ *                            for any other inputs or unsupported languages.
+ * @param {array} instructions - An array of instructions specified to be translated.
+ */
+
+// Function to translate instructions based on selected language
+const translate = (language, ...instructions) => {
+    let consent, load; // Variables for the translated texts of the buttons
+    let translatedInstructions = []; // Array to store translated instructions
+
+    // Determine the translation based on the selected language
+    switch (language) {
+        case "french":
+            consent = "CONSENTEMENT";
+            load = "CHARGE";
+            translatedInstructions = instructions;
+            break;
+
+        case "german":
+            consent = "ZUSTIMMUNG";
+            load = "BELASTUNG";
+            translatedInstructions = instructions;
+            break;
+
+        default: // Default case for English and unsupported languages
+            consent = "CONSENT";
+            load = "LOAD";
+            translatedInstructions = instructions; // No translation needed, keep original instructions
+            break;
+    }
+
+    // Update the webpage elements with the translated text
+    document.getElementById("submitButton").innerHTML = consent; // Update consent button
+    document.getElementById("nextButton").innerHTML = load; // Update load/next button
+
+    // Assuming you have corresponding elements for instructions on your webpage
+    translatedInstructions.forEach((translatedInstruction, index) => {
+        let instructionElementId = `instruction${index + 1}_stim`;
+        if (document.getElementById(instructionElementId)) {
+            document.getElementById(instructionElementId).innerHTML =
+                translatedInstruction;
+        }
+    });
+};
