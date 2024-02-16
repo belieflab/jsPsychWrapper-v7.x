@@ -44,7 +44,7 @@ require_once './wrap/lib/nda.php';
   <!-- load config first! -->
   <script type="text/javascript" src="./exp/conf.js"></script>
   <!-- load wrapper dependencies -->
-  <script type="text/javascript" src="./wrap/exp/fn.js"></script>
+  <script type="text/javascript" src="./wrap/lib/fn.js"></script>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="./exp/fn.js"></script>
   <script type="text/javascript" src="./exp/var.js"></script>
