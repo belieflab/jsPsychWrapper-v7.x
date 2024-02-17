@@ -31,11 +31,11 @@ if (isset($_GET["src_subject_id"])) {
     $candidateId = $_GET["candidateId"] ?? null;
 
     // Set NDA required variables
-    $subjectKey = $_GET["subjectkey"] ?? null;
-    $sexAtBirth = $_GET["sex"] ?? null;
-    $institutionAlias = $_GET["site"] ?? null;
-    $ageInMonths = $_GET["interview_age"] ?? null;
-    $groupStatus = $_GET["phenotype"] ?? null;
+    $subjectkey = $_GET["subjectkey"] ?? null;
+    $sex = $_GET["sex"] ?? null;
+    $site = $_GET["site"] ?? null;
+    $interview_age = $_GET["interview_age"] ?? null;
+    $phenotype = $_GET["phenotype"] ?? null;
     $visit = $_GET["visit"] ?? null;
     $week = $_GET["week"] ?? null;
 }
@@ -57,21 +57,90 @@ if (isset($_GET["src_subject_id"])) {
 
 <script type="text/javascript">
 
-    const workerId = "<?php echo $workerId; ?>";
-    const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
-    const participantId = "<?php echo $participantId; ?>";
-    let src_subject_id = "<?php echo $src_subject_id; ?>";
-    let subjectId = "<?php echo $subjectId; ?>";
+
+const workerId = "<?php echo $workerId; ?>";
+const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
+const participantId = "<?php echo $participantId; ?>";
+const src_subject_id = "<?php echo $src_subject_id; ?>";
+
+// subjectId is the gerneal variable that will be used to pass the subject id to saveData
+let subjectId = "<?php echo $subjectId; ?>";
 
 
-    // these are NDA required variables which will get passed from participant portal 
-    const GUID = "<?php echo $subjectKey?>";
-    const subjectID = "<?php echo $consortId?>";
-    const sexAtBirth = "<?php echo $sexAtBirth?>";
-    const siteNumber = "<?php echo $institutionAlias?>";
-    const ageAtAssessment = "<?php echo $ageInMonths?>";
-    const groupStatus = "<?php echo $groupStatus?>";
-    const visit = "<?php echo $visit?>";
-    const week = "<?php echo $week?>";
+// these are NDA required variables which will get passed from participant portal 
+const subjectkey = "<?php echo $subjectkey?>";
+const sex = "<?php echo $sex?>";
+const site = "<?php echo $site?>";
+const interview_age = "<?php echo $interview_age?>";
+const phenotype = "<?php echo $phenotype?>";
+const visit = "<?php echo $visit?>";
+const week = "<?php echo $week?>";
+
+const writeCandidateKeys = (data) => {
+
+  const workerId = "<?php echo $workerId; ?>";
+
+  if (src_subject_id !== '') {
+
+      data.subjectkey = subjectkey;
+      data.src_subject_id = workerId;
+      data.site = site;
+      data.interview_date = interview_date;
+      data.interview_age = interview_age;
+      data.sex = sex;
+      data.phenotype = phenotype;
+      data.visit = visit;
+      data.handedness = handedness;
+      data.version = version;
+    
+  }
+
+  if (workerId !== '') {
+
+      data.workerId = workerId;
+      data.handedness = handedness;
+      data.version = version;
+
+      if (visit !== '') {
+          data.visit = visit;
+      }
+      if (week !== '') {
+          data.week = week;
+      }
+
+  }
+
+  if (participantId !== '') {
+
+      data.participantId = participantId;
+      data.handedness = handedness;
+      data.version = version;
+
+      if (visit !== '') {
+          data.visit = visit;
+      }
+      if (week !== '') {
+          data.week = week;
+      }
+
+  }
+
+  if (PROLIFIC_PID !== '') {
+
+      data.prolificPid = PROLIFIC_PID;
+      data.handedness = handedness;
+      data.version = version;
+
+      if (visit !== '') {
+          data.visit = visit;
+      }
+      if (week !== '') {
+          data.week = week;
+      }
+
+  }
+
+}
+
 
 </script>
