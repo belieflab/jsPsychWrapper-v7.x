@@ -1,4 +1,4 @@
-let trialIterator = 1;
+let trialIterator = 0;
 
 /*define stroop_variables(stroop stimuli)*/
 const stroopVariables = [
