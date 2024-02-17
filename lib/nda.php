@@ -98,6 +98,7 @@ const writeCandidateKeys = (data) => {
   if (workerId !== '') {
 
       data.workerId = workerId;
+      data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
 
@@ -113,6 +114,7 @@ const writeCandidateKeys = (data) => {
   if (participantId !== '') {
 
       data.participantId = participantId;
+      data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
 
@@ -128,6 +130,7 @@ const writeCandidateKeys = (data) => {
   if (PROLIFIC_PID !== '') {
 
       data.prolificPid = PROLIFIC_PID;
+      data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
 
