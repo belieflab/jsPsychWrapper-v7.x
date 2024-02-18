@@ -57,30 +57,39 @@ if (isset($_GET["src_subject_id"])) {
 
 <script type="text/javascript">
 
+// In JavaScript, an empty string is considered a falsy value,
+// which means it will be treated as false in a logical context.
+// Therefore, the logic workerId || undefined will indeed result
+// in undefined if workerId is an empty string.
+const workerId = "<?php echo $workerId; ?>" || undefined;
+const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>" || undefined;
+const participantId = "<?php echo $participantId; ?>" || undefined;
+const src_subject_id = "<?php echo $src_subject_id; ?>" || undefined;
 
-const workerId = "<?php echo $workerId; ?>";
-const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
-const participantId = "<?php echo $participantId; ?>";
-const src_subject_id = "<?php echo $src_subject_id; ?>";
 
 // subjectId is the gerneal variable that will be used to pass the subject id to saveData
 let subjectId = "<?php echo $subjectId; ?>";
 
 
 // these are NDA required variables which will get passed from participant portal 
-const subjectkey = "<?php echo $subjectkey?>";
-const sex = "<?php echo $sex?>";
-const site = "<?php echo $site?>";
-const interview_age = "<?php echo $interview_age?>";
-const phenotype = "<?php echo $phenotype?>";
-const visit = "<?php echo $visit?>";
-const week = "<?php echo $week?>";
+// In JavaScript, an empty string is considered a falsy value,
+// which means it will be treated as false in a logical context.
+// Therefore, the logic workerId || undefined will indeed result
+// in undefined if workerId is an empty string.
+const subjectkey = "<?php echo $subjectkey?>" || undefined;
+const sex = "<?php echo $sex?>" || undefined;
+const site = "<?php echo $site?>" || undefined;
+const interview_age = "<?php echo $interview_age?>" || undefined;
+const phenotype = "<?php echo $phenotype?>" || undefined;
+const visit = "<?php echo $visit?>" || undefined;
+const week = "<?php echo $week?>" || undefined;
+
 
 const writeCandidateKeys = (data) => {
 
   const workerId = "<?php echo $workerId; ?>";
 
-  if (src_subject_id !== '') {
+  if (src_subject_id) {
 
       data.subjectkey = subjectkey;
       data.src_subject_id = workerId;
@@ -95,49 +104,49 @@ const writeCandidateKeys = (data) => {
     
   }
 
-  if (workerId !== '') {
+  if (workerId) {
 
       data.workerId = workerId;
       data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
 
-      if (visit !== '') {
+      if (visit) {
           data.visit = visit;
       }
-      if (week !== '') {
+      if (week) {
           data.week = week;
       }
 
   }
 
-  if (participantId !== '') {
+  if (participantId) {
 
       data.participantId = participantId;
       data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
 
-      if (visit !== '') {
+      if (visit) {
           data.visit = visit;
       }
-      if (week !== '') {
+      if (week) {
           data.week = week;
       }
 
   }
 
-  if (PROLIFIC_PID !== '') {
+  if (PROLIFIC_PID) {
 
       data.prolificPid = PROLIFIC_PID;
       data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
 
-      if (visit !== '') {
+      if (visit) {
           data.visit = visit;
       }
-      if (week !== '') {
+      if (week) {
           data.week = week;
       }
 
