@@ -68,7 +68,7 @@ const src_subject_id = "<?php echo $src_subject_id; ?>" || undefined;
 
 
 // subjectId is the gerneal variable that will be used to pass the subject id to saveData
-let subjectId = "<?php echo $subjectId; ?>";
+const subjectId = "<?php echo $subjectId; ?>";
 
 
 // these are NDA required variables which will get passed from participant portal 
