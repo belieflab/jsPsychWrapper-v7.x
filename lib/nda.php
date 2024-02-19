@@ -1,6 +1,6 @@
 <?php
 // Initialize variables to null
-$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectKey = $consortId = $sexAtBirth = $institutionAlias = $ageInMonths = $groupStatus = $visit = $week = null;
+$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $interview_age = $phenotype = $visit = $week = null;
 
 // Check for workerId and set $subjectId
 if (isset($_GET["workerId"])) {
