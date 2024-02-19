@@ -24,7 +24,6 @@ if (isset($_GET["participantId"])) {
 if (isset($_GET["src_subject_id"])) {
     $src_subject_id = $_GET["src_subject_id"];
     $subjectId = $src_subject_id;
-    $consortId = $src_subject_id; // Assuming consortId is intended to be the same as src_subject_id
 
     // Set omnibus database variables
     $studyId = $_GET["studyId"] ?? null;
@@ -81,26 +80,49 @@ const sex = "<?php echo $sex?>" || undefined;
 const site = "<?php echo $site?>" || undefined;
 const interview_age = "<?php echo $interview_age?>" || undefined;
 const phenotype = "<?php echo $phenotype?>" || undefined;
+
+// NDA required variables reflecting timepoints
 const visit = "<?php echo $visit?>" || undefined;
 const week = "<?php echo $week?>" || undefined;
 
 
+/**
+ * Updates the jsPsych data object with candidate keys and additional information based on the context.
+ * This function takes into account different scenarios such as when src_subject_id, workerId,
+ * participantId, or PROLIFIC_PID are available.
+ * 
+ * @param {Object} data - The jsPsych data object to be updated.
+ * This data object is expected to be mutated within the function with new or updated properties.
+ * 
+ * Each conditional block checks for different identifiers (like src_subject_id, workerId, etc.)
+ * and updates the data object with relevant information accordingly. This includes subject keys,
+ * worker IDs, participant IDs, interview details, and other metadata.
+ * 
+ * Note: PHP variables (e.g., `<?php echo $workerId; ?>`) are used to assign JavaScript constants;
+ * ensure this function is used within a PHP file or template where PHP variables are defined.
+ */
 const writeCandidateKeys = (data) => {
-
-  const workerId = "<?php echo $workerId; ?>";
 
   if (src_subject_id) {
 
-      data.subjectkey = subjectkey;
       data.src_subject_id = workerId;
-      data.site = site;
       data.interview_date = interview_date;
-      data.interview_age = interview_age;
-      data.sex = sex;
-      data.phenotype = phenotype;
-      data.visit = visit;
       data.handedness = handedness;
       data.version = version;
+      
+      data.subjectkey = subjectkey;
+      data.sex = sex;
+      data.site = site;
+      data.interview_age = interview_age;
+      data.phenotype = phenotype;
+
+
+      if (visit) {
+          data.visit = visit;
+      }
+      if (week) {
+          data.week = week;
+      }
     
   }
 
@@ -138,7 +160,7 @@ const writeCandidateKeys = (data) => {
 
   if (PROLIFIC_PID) {
 
-      data.prolificPid = PROLIFIC_PID;
+      data.PROLIFIC_PID = PROLIFIC_PID;
       data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;

@@ -8,17 +8,26 @@ const jsPsych = initJsPsych({
 const timeline = [];
 
 /*define instructions*/
+
 const config = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: english1,
+    stimulus: instructions[0],
     key_forward: " ",
 };
 
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: english2,
+    stimulus: instructions[1],
     key_forward: " ",
 };
+
+const instruction1 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instructions[2],
+    key_forward: ["y", "n"],
+};
+
+const instructionSet = [instruction1];
 
 /*add fixation*/
 const fixation = {
@@ -58,26 +67,25 @@ const procedure = {
 
 const dataSave = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: dataSaveAnimation,
+    stimulus: dataSaveAnimation(),
     choices: "NO_KEYS",
     trial_duration: 5000,
-    on_finish: function () {
+    on_finish: () => {
+        const updatedScore =
+            typeof score !== "undefined"
+                ? score
+                : jsPsych.data.get().select("score").values.slice(-1)[0]; // Replace 'score' with actual data key if necessary
+
+        // Now, generate the thank you message with the updated score
+        const thankYou = instructions[3](updatedScore);
+
         saveDataPromise(
-            experimentAlias + "_" + subjectId,
+            `${experimentAlias}_${subjectId}`,
             jsPsych.data.get().csv()
         )
             .then((response) => {
                 console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
-                const thankYou = `
-                <div class="body-white-theme">
-                    <p>Thank you!</p>
-                    <p>You have successfully completed the experiment and your data has been saved.</p>
-                    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-                    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-                    <!-- <p>Please wait for the experimenter to continue.</p> -->
-                    <p><i>You may now close the experiment window at any time.</i></p>
-                </div>`;
                 document.querySelector("#jspsych-content").innerHTML = thankYou;
             })
             .catch((error) => {
@@ -115,4 +123,5 @@ const dataSave = {
     },
 };
 
+// Load and execute "exp/main.js" using jQuery's $.getScript method.
 $.getScript("exp/main.js");
