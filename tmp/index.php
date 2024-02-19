@@ -23,9 +23,9 @@ require_once './wrap/lib/ids.php';
   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
   <!-- general styling -->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="./wrap/lib/style.css">
   <!-- additional styling -->
-  <!-- <link rel="stylesheet" type="text/css" href="css/exp.css"> -->
+  <link rel="stylesheet" type="text/css" href="./css/exp.css">
 
 </head>
 
