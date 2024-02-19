@@ -4,7 +4,7 @@
 
 // Debug Mode
 // Options: true, false
-let debug = false; // Default debug mode setting for the experiment
+let debug = true; // Default debug mode setting for the experiment
 
 // Experiment Name
 const experimentName = "Stroop Task"; // Name displayed in the browser title bar
