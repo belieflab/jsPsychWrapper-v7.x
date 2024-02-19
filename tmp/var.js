@@ -10,3 +10,5 @@ const stroopVariables = [
 
 const trials = stroopVariables.length;
 const blocks = 1;
+
+const totalTrials = trials * blocks;

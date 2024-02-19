@@ -12,18 +12,12 @@
                 <!-- Language-specific content will be loaded here by JavaScript Event Listener in fn.js translate() -->
             </div>
         </div>
-        <button id="submitButton" class="loadMain" onclick="validateConsent()" type="button" style="display: none;"><script>consent</script></button>
-    </div>
-
-    <div id="load" style="display: none">
-        <h3>All validation rules were passed successfully!</h3>
-        <h3>Click to load the experiment.</h3>
-        <button id="nextButton" class="noCursor" onclick="startExperiment()"><script>load</script></button>
+        <button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'); validateConsent()" type="button" style="display: none;"><script>consent</script></button>
     </div>
 </div>
 
 <script>
-    $("button.loadMain").click(() => {
-        $.getScript("exp/timeline.js");
-    });
+    // $("button.loadMain").click(() => {
+    //     $.getScript("exp/timeline.js");
+    // });
 </script>
