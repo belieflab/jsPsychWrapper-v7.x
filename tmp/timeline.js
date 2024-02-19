@@ -55,7 +55,7 @@ const trial = {
         text: jsPsych.timelineVariable("text"),
         condition: jsPsych.timelineVariable("condition"),
         subjectId: subjectId,
-        interview_date: today,
+        interview_date: interview_date,
     },
 };
 

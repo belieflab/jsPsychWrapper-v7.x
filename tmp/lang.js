@@ -30,7 +30,8 @@ switch (version) {
         <p>In this experiment, you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent.</p>
         <p>Press Space to continue.</p>`;
 
-        var english3 = `
+        var english3 = (score) => {
+            return `
         <div class="body-white-theme">
             <p>Thank you!</p>
             <p>You have successfully completed the experiment and your data has been saved.</p>
@@ -40,7 +41,7 @@ switch (version) {
             <!-- <p>Please wait for the experimenter to continue.</p> -->
             <p><i>You may now close the experiment window at any time.</i></p>
         </div>`;
-        break;
+        };
 }
 
 // Aggregate the instructions of your language choice
