@@ -1,5 +1,5 @@
 <?php
-require_once './wrap/lib/nda.php';
+require_once './wrap/lib/ids.php';
 ?>
 
 <!DOCTYPE html>
