@@ -3,6 +3,7 @@
 <div class="screening">
     <div id="consent">
         <h1 id="hide" class="consent-title">Study Consent Form</h1>
+        <p><?php echo gitCommitHash();?></p>
         <div class="loading centeredDiv">
             <h1>Loading...</h1>
         </div>
@@ -15,9 +16,3 @@
         <button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'); validateConsent()" type="button" style="display: none;"><script>consent</script></button>
     </div>
 </div>
-
-<script>
-    // $("button.loadMain").click(() => {
-    //     $.getScript("exp/timeline.js");
-    // });
-</script>

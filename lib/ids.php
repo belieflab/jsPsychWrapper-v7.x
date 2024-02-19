@@ -45,7 +45,7 @@ if (isset($_GET["src_subject_id"])) {
  * @return mixed Either the hash or a boolean false
  */
 
- function gitCommitHash( $branch='master' ) {
+ function gitCommitHash( $branch='main' ) {
   if ( $hash = file_get_contents( sprintf( '.git/refs/heads/%s', $branch ) ) ) {
     return "version: ".strval(substr(trim($hash),-7));
   } else {
@@ -66,36 +66,8 @@ const participantId = "<?php echo $participantId; ?>" || undefined;
 const src_subject_id = "<?php echo $src_subject_id; ?>" || undefined;
 
 
-// subjectId is the gerneal variable that will be used to pass the subject id to saveData
-// subjectId is the general variable that will be used to pass the subject id to saveData
+// subjectId is the hybrid variable that will be used to pass the appropriate identifier to saveData
 const subjectId = "<?php echo $subjectId; ?>" || undefined;
-
-// Check if subjectId is undefined and set the flag accordingly
-// if (subjectId === undefined) {
-//     console.error("WARNING: subjectId is undefined! Data will save as a timestamp.");
-//     const dataSaveWarning = confirm("WARNING: The subjectId is undefined! Data will save anonymously. Do you wish to continue?");
-    
-//     if (!dataSaveWarning) {
-//         // If the user cancels, display a message or redirect, then stop further execution.
-//         alert("Experiment cancelled by the user."); // Notify the user that the experiment is being stopped.
-//           // Show consent form and submit button
-   
-//         // If you are using a framework like jsPsych, you might need to end the experiment explicitly.
-//         // For example, if using jsPsych:
-//         // jsPsych.endExperiment('The experiment has been cancelled.');
-
-//         // If not using jsPsych or similar, you might just redirect or halt further JavaScript execution.
-//         // For a simple HTML/JS setup, you could redirect to another page:
-//         // window.location.href = 'experiment_cancelled.html';
-
-//         // For now, we'll just halt further JavaScript execution:
-//         throw new Error("Experiment stopped by the user."); // This prevents further execution.
-//     }
-// }
-
-// Continue with the experiment setup or execution code here
-// This part of the code will only be reached if subjectId is defined or if the user agreed to continue without it.
-
 
 // these are NDA required variables which will get passed from participant portal 
 // In JavaScript, an empty string is considered a falsy value,
