@@ -7,3 +7,6 @@ const stroopVariables = [
     { colour: "red", text: "red", condition: "congruent" },
     { colour: "red", text: "green", condition: "incongruent" },
 ];
+
+const trials = stroopVariables.length;
+const blocks = 1;

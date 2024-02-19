@@ -63,6 +63,7 @@ const trial = {
 const procedure = {
     timeline: [fixation, trial],
     timeline_variables: stroopVariables,
+    repetitions: getRepetitions(),
 };
 
 const dataSave = {
