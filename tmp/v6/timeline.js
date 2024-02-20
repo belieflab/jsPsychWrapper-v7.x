@@ -53,12 +53,14 @@ const trial = {
         );
     },
     choices: ["n", "y"],
-    data: {
-        colour: jsPsych.timelineVariable("colour"),
-        text: jsPsych.timelineVariable("text"),
-        condition: jsPsych.timelineVariable("condition"),
-        subjectId: subjectId,
-        interview_date: interview_date,
+    data: () => {
+        return {
+            colour: jsPsych.timelineVariable("colour", true),
+            text: jsPsych.timelineVariable("text", true),
+            condition: jsPsych.timelineVariable("condition", true),
+            subjectId: subjectId,
+            interview_date: interview_date,
+        };
     },
 };
 
