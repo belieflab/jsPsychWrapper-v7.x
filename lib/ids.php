@@ -84,7 +84,6 @@ const phenotype = "<?php echo $phenotype?>" || undefined;
 const visit = "<?php echo $visit?>" || undefined;
 const week = "<?php echo $week?>" || undefined;
 
-
 /**
  * Updates the jsPsych data object with candidate keys and additional information based on the context.
  * This function takes into account different scenarios such as when src_subject_id, workerId,
