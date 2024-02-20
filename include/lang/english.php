@@ -1,9 +1,10 @@
 <!-- consent-content.php -->
 <h2 id="consentHeading" class="consent">
-  CONSENT FOR PARTICIPATION IN A RESEARCH PROJECT 200 FR. 1 (2016-2)<br>
+  CONSENT FOR PARTICIPATION IN A RESEARCH PROJECT 200 FR. 1 (2016-2)
+  <br />
   YALE UNIVERSITY SCHOOL OF MEDICINE CONNECTICUT MENTAL HEALTH CENTER
 </h2>
-
+<br />
 <p id="consentInstructions" class="consent">
   <strong>Study Title:</strong> Beliefs and Personality Traits<br><br>
   <strong>Principal Investigator:</strong> Philip R. Corlett, PhD<br><br>

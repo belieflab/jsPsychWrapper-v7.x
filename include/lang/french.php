@@ -5,9 +5,8 @@
       YALE UNIVERSITY SCHOOL OF MEDICINE CONNECTICUT MENTAL HEALTH CENTER
     </h2> 
 
-    <h2>
-      
- </h2>
+    <br />
+
     <p id="consentInstructions" class="consent">
       <b>Titre de l'étude:</b> Croyances et traits de personnalité
       <br><br>

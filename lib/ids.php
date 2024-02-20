@@ -175,5 +175,4 @@ const writeCandidateKeys = (data) => {
 
 }
 
-
 </script>

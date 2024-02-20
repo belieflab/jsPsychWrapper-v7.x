@@ -5,9 +5,8 @@
       YALE UNIVERSITY SCHOOL OF MEDICINE CONNECTICUT MENTAL HEALTH CENTER
     </h2> 
 
-    <h2>
-      
- </h2>
+    <br />
+
     <p id="consentInstructions" class="consent">
       <b>Studientitel:</b> Überzeugungen und Persönlichkeitsmerkmale
       <br><br>

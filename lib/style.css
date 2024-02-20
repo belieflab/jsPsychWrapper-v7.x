@@ -64,6 +64,9 @@ p {
     border: solid 0px #98be10;
     color: #222222;
     padding: 4px;
+    margin: 35px;
+    padding: 20px;
+    border-radius: 15px; /* Adds rounded corners */
 }
 
 #consentHeading,
@@ -157,15 +160,23 @@ p.bold {
     width: 50%;
 }
 
-#submitButton {
-    background-color: #077bff;
-    /* omnibus blue */
-    border: black solid 3px;
+#submitButton,
+#consentButton {
+    background-color: #077bff; /* Omnibus blue */
+    border: #409eff solid 1px; /* Lighter blue border for a softer look */
     color: white;
     font-size: 30px;
     height: 50px;
     margin: 30px auto;
     width: 300px;
+    border-radius: 25px; /* Keeps the pill-like shape */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the buttons */
+    display: block; /* Ensures the margin auto works for center alignment */
+}
+
+#submitButton:hover,
+#consentButton:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
 }
 
 .spinner {
@@ -348,10 +359,15 @@ p.bold {
 
 /* new consent */
 .screening {
-    background-color: darkgray;
+    background-color: lightgray;
     text-align: center;
-    margin: 2vw; /* Use viewport width for responsive margins */
-    padding: 1vw;
+    margin: 35px;
+    padding: 20px;
+    border-radius: 15px; /* Adds rounded corners */
+}
+
+.screening h1 {
+    color: black; /* Adjusts title color */
 }
 
 .consent-title {
@@ -382,4 +398,123 @@ p.bold {
 
 .data-save-animation {
     color: var(--main-color); /* Text color */
+}
+
+/*  */
+
+.custom-radio-button {
+    position: relative;
+    padding-left: 35px; /* Space for the custom radio button */
+    margin-bottom: 12px;
+    margin-right: 20px; /* Increase spacing between buttons */
+    cursor: pointer;
+    font-size: 18px; /* Adjust font size here */
+    display: inline-block; /* Align buttons horizontally */
+    line-height: 25px; /* Adjust line height to center text with the button */
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.custom-radio-button input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px; /* Adjust for size */
+    width: 25px; /* Adjust for size */
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* When the radio button is checked, add a blue background */
+.custom-radio-button input:checked ~ .checkmark {
+    background-color: #077bff;
+    border: #409eff solid 1px; /* Lighter blue border for a softer look */
+}
+
+/* Create the indicator (the dot) inside the custom radio button */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot) when checked */
+.custom-radio-button input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot) */
+.custom-radio-button .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.form-group {
+    text-align: center; /* Center align the text and any child elements */
+    margin: auto; /* Center the div itself if within another container */
+    width: fit-content; /* Make the width of the div fit its contents */
+}
+
+.custom-input {
+    background-color: #fff; /* White background */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded borders */
+    font-size: 16px; /* Adjust font size here */
+    padding: 10px; /* Add some padding inside the input field */
+    width: 200px; /* Set a default width for the input field */
+    display: inline-block; /* Necessary for centering if the parent has text-align: center */
+    margin-top: 8px; /* Optional: Add some space above the field */
+}
+
+.custom-input:focus {
+    border-color: #077bff; /* Change border color when focused for better visibility */
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 5px rgba(7, 123, 255, 0.5); /* Add a subtle shadow to indicate focus */
+}
+
+.form-group {
+    text-align: center;
+    margin: auto;
+    width: fit-content;
+}
+
+.custom-select {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px 30px 10px 10px; /* Adjusted for arrow spacing */
+    width: 200px; /* Adjust as necessary */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+    position: relative; /* Ensure relative positioning for positioning pseudo-elements */
+}
+
+.custom-select:focus {
+    border-color: #077bff; /* Change border color when focused */
+    outline: none;
+    box-shadow: 0 0 5px rgba(7, 123, 255, 0.5);
+}
+
+/* Ensures the container is positioned relative to place pseudo-elements correctly */
+.form-group {
+    position: relative;
+    text-align: center;
+    margin: auto;
+    width: fit-content;
 }

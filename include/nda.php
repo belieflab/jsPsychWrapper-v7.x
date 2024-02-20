@@ -1,20 +1,30 @@
-<div class="screening" style="background-color:lightgray; text-align:center; margin:35px; vertical-align:middle">
+
+<!-- style="background-color:lightgray; text-align:center; margin:35px; vertical-align:middle" -->
+<div class="screening">
 <br>
 <h1 style="text-align:center;">Participant Intake</h1>
-<p><?php echo gitCommitHash();?></p>
-  <div id="intake">
+
+  <!-- <div id="intake"> -->
     
 
   <form>
-    <!-- <label for="handedness"><b>Are you right or left handed?</b></label> -->
-    <p style="color:black"><b>Which is your dominant hand?</b></p>
-        <label for="right">Right</label>
-        <input type="radio" name="handedness" id="rightHanded" value="rightHanded">
 
-        <label for="left">Left</label>
-        <input type="radio" name="handedness" id="leftHanded" value="leftHanded">
+  <!-- <div class="custom-radio-container"> -->
+    <h4 style="color:black">Which is your dominant hand?</h4>
 
-        <!-- <span class="checkmark"></span> -->
+<label class="custom-radio-button">Right
+  <input type="radio" name="handedness" value="rightHanded" id="rightHanded">
+  <span class="checkmark"></span>
+</label>
+
+<label class="custom-radio-button">Left
+  <input type="radio" name="handedness" value="leftHanded" id="leftHanded">
+  <span class="checkmark"></span>
+</label>
+
+
+<!-- </div> -->
+
 
     <!-- <p style="color:black"><b>Before proceeding to the task, please confirm the following are true:</b></p>
     <label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  
@@ -33,7 +43,6 @@
     <label class="container">Headphone volume is set to 50% &nbsp&nbsp&nbsp  
     <input type="checkbox" name="volume" id="volume" value="1"/>
   </label> -->
-  </form>
   
   <!-- <label class="container">Headphones plugged in? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp               
     <input type="checkbox"> 
@@ -46,5 +55,9 @@
   </label>
 </form>
 <br> -->
-<button id="submitButton" class="btn btn-primary btn-lg loadMain" onclick="$.getScript('exp/timeline.js'), validateSrcSubjectId(), /*validateBrightness(), validateFullscreen(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateNda()" type="button">SUBMIT</button>
+<h5><?php echo gitCommitHash();?></h5>
+
+</form>
+
 </div>

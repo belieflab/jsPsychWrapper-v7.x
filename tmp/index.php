@@ -9,10 +9,11 @@ require_once './wrap/lib/ids.php';
   <!-- add the title of the experiment that would be seen in the browser -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.title = experimentName;
+      document.title = `${experimentAlias.toUpperCase()}`;
     });
   </script>
-
+  <!-- favicon -->
+  <link rel="icon" type="image/ico" href="./wrap/favicon.ico">
   <!-- PHP wrapper libraries -->
   <script type="text/javascript" src="./wrap/lib/validate.js"></script>
   <script type="text/javascript" src="./wrap/lib/jquery-3.5.1.min.js"></script>
