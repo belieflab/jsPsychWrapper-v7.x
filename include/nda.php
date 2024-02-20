@@ -1,7 +1,7 @@
 <div class="screening" style="background-color:lightgray; text-align:center; margin:35px; vertical-align:middle">
 <br>
 <h1 style="text-align:center;">Participant Intake</h1>
-<!-- <input type="text" id="result"> -->
+<p><?php echo gitCommitHash();?></p>
   <div id="intake">
     
 
@@ -16,11 +16,11 @@
 
         <!-- <span class="checkmark"></span> -->
 
-    <p style="color:black"><b>Before proceeding to the task, please confirm the following are true:</b></p>
+    <!-- <p style="color:black"><b>Before proceeding to the task, please confirm the following are true:</b></p>
     <label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  
     <input type="checkbox" name="brightness" id="brightness" value="1"/>
     </label>
-    <br>
+    <br> -->
     <!-- <label class="container">Browser window is in full screen &nbsp&nbsp&nbsp&nbsp&nbsp
     <input type="checkbox" name="fullscreen" id="fullscreen" value="1"/>
     </label>
@@ -46,27 +46,5 @@
   </label>
 </form>
 <br> -->
-<button id="submitButton" class="btn btn-primary btn-lg loadMain" onclick="validateHandedness(), validateBrightness(), /*validateFullscreen(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button>
+<button id="submitButton" class="btn btn-primary btn-lg loadMain" onclick="$.getScript('exp/timeline.js'), validateSrcSubjectId(), /*validateBrightness(), validateFullscreen(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button>
 </div>
-<div id="validation" style="display: none">
-    <br>
-    <form>
-</form>
-</div>
-
-<div id="load" style="display: none">
-<h3>All validation rules were passed successfully!</h3>
-<h3>Click to load the experiment.</h3><button id="nextButton" class="noCursor" onclick="startExperiment()">LOAD</button>
-<!-- <p id="nextButton" style="display: none" >please make sure you are in a quiet place. When you are ready to begin, click 'START'</p> -->
-<br>
-</div>
-<script>$("button.loadMain").click(() => {
-        // $.getScript("exp/rand.js");
-      $.getScript("exp/timeline.js");
-      // $.getScript("exp/main.js");
-  }); </script>
-<script>
-$("button.noCursor").click(() => {
-$("body").addClass("hideCursor");
-}); 
-</script>

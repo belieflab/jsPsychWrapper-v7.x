@@ -61,10 +61,10 @@
 
         <!-- <span class="checkmark"></span> -->
 
-    <p style="color:black"><b>Before proceeding to the task, please confirm the following are true:</b></p>
+    <!-- <p style="color:black"><b>Before proceeding to the task, please confirm the following are true:</b></p>
     <label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  
     <input type="checkbox" name="brightness" id="brightness" value="1"/>
-    </label>
+    </label> -->
     <!-- <br>
     <label class="container">Headphones plugged in? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      
     <input type="checkbox" name="headphones" id="headphones" value="1"/>
@@ -85,28 +85,5 @@
   </label>
 </form>
 <br> -->
-<button id="submitButton" class="loadMain" onclick="site = validateSite(), src_subject_id = validateSubject(), subjectkey = validateGUID(), interview_age = validateAge(), sex = validateSex(), handedness = validateHandedness(), validateBrightness(), /*validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="site = validateSite(), src_subject_id = validateSubject(), subjectkey = validateGUID(), interview_age = validateAge(), sex = validateSex(), handedness = validateHandedness(), /*validateBrightness(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button>
 </div>
-<div id="validation" style="display: none">
-    <br>
-    <form>
-</form>
-</div>
-<div>
-
-<div id="load" style="display: none">
-<h3>All validation rules were passed successfully!</h3>
-<h3>Click to load the experiment.</h3><button id="nextButton" class="noCursor" onclick="startExperiment()">LOAD</button>
-<!-- <p id="nextButton" style="display: none" >please make sure you are in a quiet place. When you are ready to begin, click 'START'</p> -->
-<br>
-</div>
-<script>$("button.loadMain").click(() => {
-      // $.getScript("exp/rand.js");
-      $.getScript("exp/timeline.js");
-      // $.getScript("exp/main.js");
-  }); </script>
-<script>
-$("button.noCursor").click(() => {
-$("body").addClass("hideCursor");
-}); 
-</script>
