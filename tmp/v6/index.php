@@ -1,6 +1,5 @@
 <?php
 require_once './wrap/lib/ids.php';
-require_once './exp/var.php';
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +48,7 @@ require_once './exp/var.php';
   <script type="text/javascript" src="./wrap/lib/fn.js"></script>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="./exp/fn.js"></script>
+  <?php require_once './exp/var.php'; ?>
   <script type="text/javascript" src="./exp/lang.js"></script>
 </footer>
 
