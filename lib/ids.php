@@ -103,7 +103,7 @@ const writeCandidateKeys = (data) => {
 
   if (src_subject_id) {
 
-      data.src_subject_id = workerId;
+      data.src_subject_id = src_subject_id;
       data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
