@@ -96,14 +96,16 @@ const week = "<?php echo $week?>" || undefined;
  * and updates the data object with relevant information accordingly. This includes subject keys,
  * worker IDs, participant IDs, interview details, and other metadata.
  * 
- * Note: PHP variables (e.g., `<?php echo $workerId; ?>`) are used to assign JavaScript constants;
+ * Note: PHP variables (e.g., ``) are used to assign JavaScript constants; 
  * ensure this function is used within a PHP file or template where PHP variables are defined.
  */
 const writeCandidateKeys = (data) => {
 
   if (src_subject_id) {
 
-      data.src_subject_id = workerId;
+    alert("this is working");
+
+      data.src_subject_id = src_subject_id;
       data.interview_date = interview_date;
       data.handedness = handedness;
       data.version = version;
