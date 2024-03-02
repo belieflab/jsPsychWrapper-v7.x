@@ -21,6 +21,7 @@ require_once './wrap/lib/ids.php';
   <script src="https://unpkg.com/jspsych@7.3.3"></script>
   <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
   <!-- jsPsych Plugins (add more here) -->
+  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
   <!-- general styling -->
