@@ -4,6 +4,7 @@ startExperiment = () => {
     jsPsych.init({
         timeline: timeline,
         show_progress_bar: true,
+        preload_images: [],
     });
 };
 
