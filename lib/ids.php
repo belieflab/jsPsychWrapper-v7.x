@@ -55,6 +55,15 @@ if (isset($_GET["src_subject_id"])) {
 ?>
 
 <script type="text/javascript">
+"use strict";
+
+// Initialize date and formatted strings
+const date = new Date();
+const dd = String(date.getDate()).padStart(2, "0");
+const mm = String(date.getMonth() + 1).padStart(2, "0"); // January is 0!
+const yyyy = date.getFullYear();
+const isoDate = `${yyyy}-${mm}-${dd}`;
+const interview_date = `${mm}/${dd}/${yyyy}`;
 
 // In JavaScript, an empty string is considered a falsy value,
 // which means it will be treated as false in a logical context.

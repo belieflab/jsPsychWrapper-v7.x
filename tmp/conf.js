@@ -2,6 +2,8 @@
 //   EXPERIMENT CONFIGURATION FILE   //
 //***********************************//
 
+"use strict";
+
 // Debug Mode
 // Options: true, false
 let debug = true; // Default debug mode setting for the experiment

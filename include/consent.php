@@ -18,12 +18,12 @@
     <h4 style="color:black">Which is your dominant hand?</h4>
 
 <label class="custom-radio-button">Left
-  <input type="radio" name="handedness" value="leftHanded" id="leftHanded">
+  <input type="radio" name="handedness" value="left" id="left">
   <span class="checkmark"></span>
 </label>
 
 <label class="custom-radio-button">Right
-  <input type="radio" name="handedness" value="rightHanded" id="rightHanded">
+  <input type="radio" name="handedness" value="right" id="right">
   <span class="checkmark"></span>
 </label>
         <!-- <span class="checkmark"></span> -->

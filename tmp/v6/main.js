@@ -1,3 +1,5 @@
+"use strict";
+
 // main order in which things are pushed to timeline
 
 timeline.push(config);
