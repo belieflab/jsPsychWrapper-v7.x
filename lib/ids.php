@@ -63,26 +63,28 @@ if (isset($_GET["src_subject_id"])) {
 const workerId = "<?php echo $workerId; ?>" || undefined;
 const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>" || undefined;
 const participantId = "<?php echo $participantId; ?>" || undefined;
-const src_subject_id = "<?php echo $src_subject_id; ?>" || undefined;
+
+// NDA variables must be defined as let to allow for reassignment in include/intake.php
+let src_subject_id = "<?php echo $src_subject_id; ?>" || undefined;
 
 
 // subjectId is the hybrid variable that will be used to pass the appropriate identifier to saveData
-const subjectId = "<?php echo $subjectId; ?>" || undefined;
+let subjectId = "<?php echo $subjectId; ?>" || undefined;
 
 // these are NDA required variables which will get passed from participant portal 
 // In JavaScript, an empty string is considered a falsy value,
 // which means it will be treated as false in a logical context.
 // Therefore, the logic workerId || undefined will indeed result
 // in undefined if workerId is an empty string.
-const subjectkey = "<?php echo $subjectkey?>" || undefined;
-const sex = "<?php echo $sex?>" || undefined;
-const site = "<?php echo $site?>" || undefined;
-const interview_age = "<?php echo $interview_age?>" || undefined;
-const phenotype = "<?php echo $phenotype?>" || undefined;
+let subjectkey = "<?php echo $subjectkey?>" || undefined;
+let sex = "<?php echo $sex?>" || undefined;
+let site = "<?php echo $site?>" || undefined;
+let interview_age = "<?php echo $interview_age?>" || undefined;
+let phenotype = "<?php echo $phenotype?>" || undefined;
 
 // NDA required variables reflecting timepoints
-const visit = "<?php echo $visit?>" || undefined;
-const week = "<?php echo $week?>" || undefined;
+let visit = "<?php echo $visit?>" || undefined;
+let week = "<?php echo $week?>" || undefined;
 
 /**
  * Updates the jsPsych data object with candidate keys and additional information based on the context.
@@ -102,8 +104,6 @@ const week = "<?php echo $week?>" || undefined;
 const writeCandidateKeys = (data) => {
 
   if (src_subject_id) {
-
-    // alert("this is working");
 
       data.src_subject_id = src_subject_id;
       data.interview_date = interview_date;
