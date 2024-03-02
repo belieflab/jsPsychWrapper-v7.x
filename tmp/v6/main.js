@@ -8,5 +8,8 @@ timeline.push(...instructionSet);
 timeline.push(procedure);
 timeline.push(dataSave);
 
-// Old jsPsych 6.3 syntax
-startExperiment();
+// don't allow experiment to start unless subjectId is set
+if (subjectId) {
+    // Old jsPsych 6.3 syntax
+    startExperiment();
+}
