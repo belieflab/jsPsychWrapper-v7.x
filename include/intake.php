@@ -16,7 +16,7 @@
     
     <!-- GUID -->
     <h4 style="color:black">GUID:</h4>
-    <input required id="guid" type="text" name="guid" minlength="12" maxlength="12" class="custom-input">
+    <input required id="guid" type="text" name="guid" minlength="12" maxlength="12" oninput="this.value = this.value.toUpperCase()" class="custom-input">
     <!-- <input required type="hidden" id="guid" name="guid" value="< ?php echo $guid ?>"> -->
 
     <!-- <button onclick="submitIntake()">submit subjectid</button> -->
@@ -30,12 +30,12 @@
     <h4 style="color:black">Sex at Birth:</h4>
 
 <label class="custom-radio-button">Male
-  <input type="radio" id="male" name="sex" value="male" onclick="validateSex(this.value)" class="custom-radio">
+  <input type="radio" id="male" name="sex" value="male" class="custom-radio">
   <span class="checkmark"></span>
 </label>
 
 <label class="custom-radio-button">Female
-  <input type="radio" id="female" name="sex" value="female" onclick="validateSex(this.value)" class="custom-radio">
+  <input type="radio" id="female" name="sex" value="female" class="custom-radio">
   <span class="checkmark"></span>
 </label>
 
@@ -43,12 +43,12 @@
     <h4 style="color:black">Which is your dominant hand?</h4>
 
 <label class="custom-radio-button">Left
-  <input type="radio" name="handedness" value="leftHanded" id="leftHanded">
+  <input type="radio" name="handedness" value="left" id="left">
   <span class="checkmark"></span>
 </label>
 
 <label class="custom-radio-button">Right
-  <input type="radio" name="handedness" value="rightHanded" id="rightHanded">
+  <input type="radio" name="handedness" value="right" id="right">
   <span class="checkmark"></span>
 </label>
 

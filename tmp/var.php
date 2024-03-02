@@ -9,6 +9,7 @@
 <!-- define all javascript globals here -->
 
 <script>
+"use strict";
 
 let trialIterator = 0;
 
