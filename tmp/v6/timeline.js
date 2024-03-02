@@ -5,6 +5,8 @@ startExperiment = () => {
         timeline: timeline,
         show_progress_bar: true,
         preload_images: [],
+        preload_audio: [],
+        preload_video: [],
     });
 };
 
