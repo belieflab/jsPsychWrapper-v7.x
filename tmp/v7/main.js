@@ -1,7 +1,7 @@
 "use strict";
 
 // main order in which things are pushed to timeline
-
+timeline.push(preload);
 timeline.push(config);
 timeline.push(welcome);
 timeline.push(...instructionSet);

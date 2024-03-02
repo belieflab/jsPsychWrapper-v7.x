@@ -6,6 +6,12 @@ const jsPsych = initJsPsych({
 
 const timeline = [];
 
+const preload = {
+    type: jsPsychPreload,
+    images: [],
+    show_detailed_errors: true,
+};
+
 /*define instructions*/
 
 const config = {
