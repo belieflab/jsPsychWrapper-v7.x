@@ -10,6 +10,8 @@
         <option value="">---</option>
     </select>
 </div>
+
+
   
     <h4 style="color:black">Subject ID:</h4>
     <input required id="subject" type="text" name="subject" minlength="5" maxlength="5" class="custom-input">
@@ -21,12 +23,18 @@
 
     <!-- <button onclick="submitIntake()">submit subjectid</button> -->
 
-    <h4 style="color:black">Date of Birth:</h4>
+    <h4 style="color:black"><label for="dob">Date of Birth:</label></h4>
 <input required id="dob" type="date" class="custom-input">
-    <!-- <form>
-    <p><b>Age:</b></p>
-    <input required id="age" type="text" name="currentage" plattern="\d*" minlength="1" maxlength="3">
-    </form> -->
+
+
+<div class="form-group">
+<h4 style="color:black"><label for="phenotype">Phenotype:</label></h4>
+    <select name="phenotype" id="phenotype" class="custom-select">
+        <option value="">---</option>
+    </select>
+</div>
+
+
     <h4 style="color:black">Sex at Birth:</h4>
 
 <label class="custom-radio-button">Male
@@ -51,6 +59,7 @@
   <input type="radio" name="handedness" value="right" id="right">
   <span class="checkmark"></span>
 </label>
+
 
 
         <!-- <span class="checkmark"></span> -->
