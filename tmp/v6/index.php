@@ -17,12 +17,13 @@ require_once './wrap/lib/ids.php';
   <!-- PHP wrapper libraries -->
   <script type="text/javascript" src="./wrap/lib/validate.js"></script>
   <script type="text/javascript" src="./wrap/lib/jquery-3.5.1.min.js"></script>
-  <!-- jsPsych CDN (content delivery network) libraries -->
-  <script src="https://unpkg.com/jspsych@7.3.3"></script>
-  <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
+  <!-- jsPsych library -->
+  <script type="text/javascript" src="./wrap/jspsych/jspsych.js"></script>
   <!-- jsPsych Plugins (add more here) -->
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+  <script type="text/javascript" src="./wrap/jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script type="text/javascript" src="./wrap/jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script type="text/javascript" src="./wrap/jspsych/plugins/jspsych-video-keyboard-response.js"></script>
+  <link href="./wrap/jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
   <!-- general styling -->
   <link rel="stylesheet" type="text/css" href="./wrap/lib/style.css">
   <!-- additional styling -->
