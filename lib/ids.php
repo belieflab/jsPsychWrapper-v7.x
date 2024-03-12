@@ -45,13 +45,31 @@ if (isset($_GET["src_subject_id"])) {
  * @return mixed Either the hash or a boolean false
  */
 
- function gitCommitHash( $branch='main' ) {
-  if ( $hash = file_get_contents( sprintf( '.git/refs/heads/%s', $branch ) ) ) {
-    return "version: ".strval(substr(trim($hash),-7));
-  } else {
-    return false;
+ function gitCommitHash($branch='main') {
+    // Try to get the hash from the specified branch.
+    $hash = @file_get_contents(sprintf('.git/refs/heads/%s', $branch));
+    if ($hash) {
+      // If the hash is found, return the last seven characters.
+      return "version: ".strval(substr(trim($hash), -7));
+    } else {
+      // If the hash is not found (perhaps because of a wrong branch name),
+      // try the other common branch name if the default was used.
+      if ($branch == 'main') {
+        $hash = @file_get_contents('.git/refs/heads/master');
+        if ($hash) {
+          return "version: ".strval(substr(trim($hash), -7));
+        }
+      } elseif ($branch == 'master') {
+        $hash = @file_get_contents('.git/refs/heads/main');
+        if ($hash) {
+          return "version: ".strval(substr(trim($hash), -7));
+        }
+      }
+      // If neither branch has a hash, return false.
+      return false;
+    }
   }
-}
+  
 ?>
 
 <script type="text/javascript">
