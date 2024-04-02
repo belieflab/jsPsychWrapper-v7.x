@@ -14,7 +14,7 @@
 
   
     <h4 style="color:black">Subject ID:</h4>
-    <input required id="subject" type="text" name="subject" minlength="5" maxlength="5" class="custom-input">
+    <input required id="subject" type="text" name="subject" minlength="8" maxlength="8" class="custom-input">
     
     <!-- GUID -->
     <h4 style="color:black">GUID:</h4>
