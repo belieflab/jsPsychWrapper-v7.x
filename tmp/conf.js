@@ -16,7 +16,7 @@ const experimentAlias = "stroop"; // Unique identifier for the experiment, used 
 const language = "english"; // Language setting for the experiment
 
 // User Interface Theme
-// Options: "light", "dark"
+// Options: "light", "dark", "white" (useful for images with white backgrounds)
 const theme = "light"; // Default theme setting for the user interface
 
 const version = "standard"; // Current version of the experiment
