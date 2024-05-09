@@ -128,7 +128,7 @@ let week = "<?php echo $week?>" || undefined;
  * Note: PHP variables (e.g., ``) are used to assign JavaScript constants; 
  * ensure this function is used within a PHP file or template where PHP variables are defined.
  */
-const writeCandidateKeysKeys = (data) => {
+const writeCandidateKeys = (data) => {
 
   if (src_subject_id) {
 
