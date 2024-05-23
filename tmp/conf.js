@@ -29,3 +29,12 @@ const feedbackLink = undefined;
 // Global variables for sites and phenotypes
 const sites = ["Yale", "UChicago", "MPRC"];
 const phenotypes = ["hc"];
+
+// Number of repetitions for each phase, user-defined object
+// reference in main procedures object repetitions property:
+// e.g.
+// repetitions: getRepetitions().learning
+const repetitions = {
+    production: totalTrials,
+    debug: 1,
+};
