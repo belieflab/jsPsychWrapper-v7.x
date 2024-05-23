@@ -47,9 +47,8 @@
   </label> -->
   
         <!-- Button with conditional script loading -->
-    <button id="consentButton" class="loadMain" onclick="loadTimeline(), validateConsent()" type="button" style="display: none;">
-        <script>consent</script>
-    </button>
+        <button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateNda()" type="button">SUBMIT</button>
+
         <h5><?php echo gitCommitHash();?></h5>
   
       </form>
