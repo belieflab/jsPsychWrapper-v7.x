@@ -57,7 +57,7 @@
   </label>
 </form>
 <br> -->
-<button id="consentButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateNda()" type="button" style="display: none;"><script>consent</script></button>
+<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateNda()" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
