@@ -88,7 +88,7 @@
 </form>
 <br> -->
 <!-- <button id="submitButton" class="loadMain" onclick="site = validateSite(), src_subject_id = validateSubject(), subjectkey = validateGUID(), interview_age = validateAge(), sex = validateSex(), handedness = validateHandedness(), /*validateBrightness(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button> -->
-<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateIntake()" type="button" style="display: none;">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateIntake()" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
