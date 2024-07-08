@@ -13,6 +13,11 @@
     --background-color: white; /* Assuming you want to invert the background as well */
 }
 
+:root.gray-theme {
+    --main-color: white; /* Switch main color to black */
+    --background-color: gray; /* Assuming you want to invert the background as well */
+}
+
 .stim {
     padding: 25px 25px 25px 25px;
     height: 200px;
