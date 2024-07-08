@@ -4,6 +4,8 @@
 </div>
 
 <script>
+  let handedness = undefined;
+
   // Call your JavaScript function here
   $.getScript('exp/timeline.js', function() {
     validateStart();
