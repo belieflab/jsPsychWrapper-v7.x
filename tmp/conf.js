@@ -24,7 +24,7 @@ const version = "standard"; // Current version of the experiment
 
 // Note: Uncomment the desired options. Ensure only one option per setting is active at a time.
 const adminEmail = undefined;
-const feedbackLink = undefined;
+const redirectLink = undefined;
 
 // Global variables for sites and phenotypes
 const sites = ["Yale", "UChicago", "MPRC"];

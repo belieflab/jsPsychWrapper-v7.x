@@ -47,7 +47,7 @@ switch (version) {
             // Append the closing HTML content.
             htmlContent += `
                     <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-                    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
+                    <!-- <p><a href="${redirectLink}">Leave Task Feedback!</a></p> -->
                     <!-- <p>Please wait for the experimenter to continue.</p> -->
                     <p>You may now close the experiment window at any time.</p>
                 </div>`;
