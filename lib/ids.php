@@ -39,6 +39,19 @@ if (isset($_GET["src_subject_id"])) {
     $week = $_GET["week"] ?? null;
 }
 
+
+function getIncludeFile() {
+  if (isset($_GET["workerId"]) || isset($_GET["participantId"]) || isset($_GET["PROLIFIC_PID"])) {
+      return "start";
+  } else if (isset($_GET["src_subject_id"])) {
+      return "nda";
+  } else {
+      return "intake";
+  }
+}
+
+$include_file = getIncludeFile();
+
 /**
  * Get the hash of the current git HEAD
  * @param str $branch The git branch to check
