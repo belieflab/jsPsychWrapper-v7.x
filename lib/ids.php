@@ -214,6 +214,11 @@ const writeCandidateKeys = (data) => {
 
   }
 
+  if (phase) {
+      data.phase = phase;
+  }
+  
+
 }
 
 </script>
