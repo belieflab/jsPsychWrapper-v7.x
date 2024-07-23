@@ -26,15 +26,17 @@ function participantRandomization(inputString) {
     let sum = digits ? digits.reduce((acc, digit) => acc + parseInt(digit), 0) : 0;
     return sum % 4;
 }
-
-
-// Call your JavaScript function here
-$.getScript('exp/timeline.js', function() {
-  validateStart();
-  testDataSave().then((result) => {
-    if (!result) {
-      alert("Failed save data check. Please make sure you are using Chrome, Firefox, or Safari.");
-    }
-  });
-});
+// Run the test and load the experiment if successful
+document.addEventListener('DOMContentLoaded', function() {
+      testDataSave().then((result) => {
+        if (!result) {
+          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
+        }
+        if (result) {
+          $.getScript('exp/timeline.js', function() {
+            validateStart();
+          });
+        }
+      });
+    });
 </script>
