@@ -28,8 +28,13 @@ function participantRandomization(inputString) {
 }
 
 
-  // Call your JavaScript function here
-  $.getScript('exp/timeline.js', function() {
-    validateStart();
+// Call your JavaScript function here
+$.getScript('exp/timeline.js', function() {
+  validateStart();
+  testDataSave().then((result) => {
+    if (!result) {
+      alert("Failed save data check. Please make sure you are using Chrome, Firefox, or Safari.");
+    }
   });
+});
 </script>
