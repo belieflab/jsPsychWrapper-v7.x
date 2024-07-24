@@ -21,7 +21,7 @@ function getParamFromUrl(name) {
         return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function participantRandomization(inputString) {
+function counterbalanceParticipants(inputString) {
     let digits = inputString.match(/\d/g);
     let sum = digits ? digits.reduce((acc, digit) => acc + parseInt(digit), 0) : 0;
     return sum % 4;
