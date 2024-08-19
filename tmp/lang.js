@@ -16,11 +16,12 @@ let instructions = [];
 switch (version) {
     default:
         var english0 = `<p>Hello!</p>
-        <p>Please edit exp/conf.php to configure the experiment.</p>
+        <p>Please edit exp/conf.js to configure the experiment.</p>
         <p>You may set the experiment name: ${experimentName}</p>
         <p>Experiment alias: ${experimentAlias} </p>
         <p>And the language: ${language}</p>
         <p>You may also set other variables as you choose.</p>
+        <p>Please see README.md for advanced configuration (redirect, counterbalancing, manul intake form).</p>
         <p>Press Space to continue.</p>`;
 
         var english1 = `
@@ -32,28 +33,16 @@ switch (version) {
         <p>In this experiment, you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent.</p>
         <p>Press Space to continue.</p>`;
 
-        var english3 = (score) => {
-            // Initialize the base HTML content.
-            let htmlContent = `
-                <div class="body-white-theme">
-                    <p>Thank you!</p>
-                    <p>You have successfully completed the experiment and your data has been saved.</p>`;
-
-            // Append the score to the HTML content if it is not null.
-            if (score !== null) {
-                htmlContent += `<p>Your final score is ${score}.</p>`;
-            }
-
-            // Append the closing HTML content.
-            htmlContent += `
-                    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-                    <!-- <p><a href="${redirectLink}">Leave Task Feedback!</a></p> -->
-                    <!-- <p>Please wait for the experimenter to continue.</p> -->
-                    <p>You may now close the experiment window at any time.</p>
-                </div>`;
-
-            return htmlContent;
-        };
+        var english3 = (score) => `
+        <p>Thank you!</p>
+        <p>You have successfully completed this task and your data has been saved.</p>
+        <p>Your final score is ${score}.</p>
+        ${
+            !src_subject_id // redirects only occur for workerId, participantId, PROLIFIC_PID
+                ? `<p>You will be redirected to the next part of the experiment; If you are not redirected please click <a href="${redirectLink}">here</a>.</p>`
+                : ""
+        }`;
+        break;
 }
 
 // Aggregate the instructions of your language choice
