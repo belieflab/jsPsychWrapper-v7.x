@@ -21,11 +21,12 @@ function getParamFromUrl(name) {
         return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function counterbalanceParticipants(inputString, remainder) {
+function counterbalanceParticipants(inputString, modulus) {
     let digits = inputString.match(/\d/g);
-    let sum = digits ? digits.reduce((acc, digit) => acc + parseInt(digit), 0) : 0;
-    return sum % remainder;
-}
+    let sum = digits ? digits.reduce((acc, digit) => acc + parseInt(digit), 0) : null;
+    
+    return sum === null ? (alert(`The ${identifierType} must contain digits for counterbalancing.\nCounterbalancing is disabled. If you would like to continue, only the first redirect condition will be used as fallback: ${urlConfig[version][0]}`), null) : sum % modulus;
+  }
 
 // Run the test and load the experiment if successful
 document.addEventListener('DOMContentLoaded', function() {

@@ -69,5 +69,5 @@ const urlConfig = {
     },
 };
 
-// calculate the remainder for counterbalancing based on version
-const remainder = urlConfig[version].length;
+// calculate the modulus for counterbalancing based on version
+const modulus = Object.keys(urlConfig[version]).length;
