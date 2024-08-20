@@ -68,6 +68,3 @@ const urlConfig = {
         3: "https://questionnaireB",
     },
 };
-
-// calculate the modulus for counterbalancing based on version
-const modulus = Object.keys(urlConfig[version]).length;
