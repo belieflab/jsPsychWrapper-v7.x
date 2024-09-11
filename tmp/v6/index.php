@@ -34,7 +34,7 @@ require_once './wrap/lib/ids.php';
 <body id='unload' onbeforeunload="return areYouSure()">
 <?php
      if (isset($_GET["workerId"]) || isset($_GET["PROLIFIC_PID"]) || isset($_GET["participantId"])) {
-      include_once "./wrap/include/consent.php";
+      include_once "./wrap/include/start.php";
     }
     if (isset($_GET["src_subject_id"])) {
       include_once "./wrap/include/nda.php";
