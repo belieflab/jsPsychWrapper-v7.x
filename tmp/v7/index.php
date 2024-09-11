@@ -46,6 +46,7 @@ require_once './wrap/lib/ids.php';
 </body>
 <footer>
   <!-- load config first! -->
+  <script type="text/javascript" src="./wrap/lib/redirect.js"></script>
   <script type="text/javascript" src="./exp/conf.js"></script>
   <!-- load wrapper dependencies -->
   <script type="text/javascript" src="./wrap/lib/fn.js"></script>
