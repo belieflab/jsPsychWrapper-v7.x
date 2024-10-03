@@ -64,3 +64,16 @@
 </form>
 
 </div>
+
+
+<script>
+  // Run the test and load the experiment if successful
+
+document.addEventListener('DOMContentLoaded', function() {
+      testDataSave().then((result) => {
+        if (!result) {
+          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
+        }
+      });
+    });
+</script>
