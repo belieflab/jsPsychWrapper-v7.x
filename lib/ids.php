@@ -109,7 +109,8 @@ let src_subject_id = "<?php echo $src_subject_id; ?>" || undefined;
 
 
 // subjectId is the hybrid variable that will be used to pass the appropriate identifier to saveData
-const subjectId = "<?php echo $subjectId; ?>" || undefined;
+// subjectId MUST be defined as let to allow for reassignment in include/intake.php
+let subjectId = "<?php echo $subjectId; ?>" || undefined;
 
 // these are NDA required variables which will get passed from participant portal 
 // In JavaScript, an empty string is considered a falsy value,
