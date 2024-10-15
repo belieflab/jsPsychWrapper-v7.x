@@ -218,6 +218,14 @@ const writeCandidateKeys = (data) => {
   if (phase) {
       data.phase = phase;
   }
+
+  if (visit) {
+      data.visit = visit;
+  }
+
+  if (week) {
+    data.week = week;
+  }
   
 
 }
