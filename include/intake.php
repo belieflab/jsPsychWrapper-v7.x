@@ -35,6 +35,9 @@
 </div>
 
 
+
+</div>
+
     <h4 style="color:black">Sex at Birth:</h4>
 
 <label class="custom-radio-button">Male
