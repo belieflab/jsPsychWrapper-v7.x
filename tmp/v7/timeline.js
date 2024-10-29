@@ -23,7 +23,7 @@ const config = {
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[1],
-    key_forward: " ",
+    on_load: () => handleFullscreen(),
 };
 
 const instruction1 = {
