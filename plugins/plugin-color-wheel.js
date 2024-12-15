@@ -4,43 +4,28 @@ var jsPsychColorWheel = (function (jsPsych) {
     const info = {
       name: "color-wheel-rating",
       parameters: {
-        /**
-         * The stimulus (e.g., monochromatic grid) to be displayed.
-         */
         stimulus: {
           type: jsPsych.ParameterType.STRING,
           pretty_name: "Stimulus",
           default: undefined,
           description: "The image or content to display above the color wheel.",
         },
-        /**
-         * The prompt to display below the color wheel.
-         */
         prompt: {
           type: jsPsych.ParameterType.HTML_STRING,
           pretty_name: "Prompt",
-          default: "Does the grid appear to have color?",
+          default: "What color does the grid seem to be?",
           description: "The question or instruction displayed below the stimulus.",
         },
-        /**
-         * How long to display the stimulus.
-         */
         stimulus_duration: {
           type: jsPsych.ParameterType.INT,
           pretty_name: "Stimulus duration",
           default: null,
         },
-        /**
-         * How long the trial lasts.
-         */
         trial_duration: {
           type: jsPsych.ParameterType.INT,
           pretty_name: "Trial duration",
           default: null,
         },
-        /**
-         * If true, trial ends when participant submits a response.
-         */
         response_ends_trial: {
           type: jsPsych.ParameterType.BOOL,
           pretty_name: "Response ends trial",
@@ -55,153 +40,135 @@ var jsPsychColorWheel = (function (jsPsych) {
       }
   
       trial(display_element, trial) {
-        // Create the HTML
         let html = `
-        <div id="jspsych-color-wheel-container" style="text-align: center;">
-          <div id="jspsych-color-wheel-stimulus">
-            <img src="${trial.stimulus}" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+          <div id="jspsych-color-wheel-container" style="text-align: center;">
+            <div id="jspsych-color-wheel-stimulus">
+              <img src="${trial.stimulus}" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+            </div>
+            <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
+            <p id="jspsych-color-wheel-prompt" style="margin-top: 10px;">${trial.prompt}</p>
+            <button id="jspsych-color-wheel-submit" style="margin-top: 15px;">Submit</button>
           </div>
-          <div id="jspsych-color-wheel" style="
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto; /* Center horizontally */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            overflow: hidden; /* Prevent any scrollbars */
-          ">
-            <div id="color-wheel" style="
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-              background: conic-gradient(
-                red, yellow, green, cyan, blue, magenta, red
-              );
-              position: relative;
-              margin: 0; /* Remove any unexpected margins */
-              padding: 0;
-            "></div>
-            <div id="selector" style="
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
-              background: white;
-              border: 2px solid black;
-              position: absolute;
-              visibility: hidden; /* Invisible but rendered */
-              transform: translate(-50%, -50%); /* Center relative to the position */
-            "></div>
-          </div>
-          <p id="jspsych-color-wheel-prompt" style="margin-top: 10px;">${trial.prompt}</p>
-          <button id="jspsych-color-wheel-submit" style="margin-top: 15px;">Submit</button>
-        </div>
-      `;
-      
+        `;
   
         display_element.innerHTML = html;
   
-        // Variables to record response
-        let response = {
-          rt: null,
-          rgb: null,
-        };
-  
-        const wheel = display_element.querySelector("#color-wheel");
-        const selector = display_element.querySelector("#selector");
+        const canvas = document.getElementById("color-wheel");
+        const ctx = canvas.getContext("2d");
+        const radius = canvas.width / 2;
+        let selectedRGB = null;
         const start_time = performance.now();
   
-        // Center of the wheel
-        const centerX = wheel.offsetWidth / 2;
-        const centerY = wheel.offsetHeight / 2;
+        // Function to draw the RGB color wheel with white gradient
+        const drawColorWheel = () => {
+          const image = ctx.createImageData(canvas.width, canvas.height);
+          const data = image.data;
   
-        wheel.addEventListener("click", (event) => {
-            const rect = wheel.getBoundingClientRect();
-            const centerX = rect.width / 2; 
-            const centerY = rect.height / 2;
-          
-            // Get relative position of the click
-            const x = event.clientX - rect.left - centerX;
-            const y = event.clientY - rect.top - centerY;
-          
-            // Calculate angle
-            let angle = Math.atan2(y, x) * (180 / Math.PI);
-            angle = (angle + 90 + 360) % 360;
-          
-            // Radius adjusted for the selector size
-            const radius = centerX - selector.offsetWidth / 2;
-            const angleRad = (angle - 90) * (Math.PI / 180);
-          
-            // Show and place the selector
-            selector.style.left = `${radius * Math.cos(angleRad) + centerX}px`;
-            selector.style.top = `${radius * Math.sin(angleRad) + centerY}px`;
-            selector.style.visibility = "visible"; // Make the selector visible
-            response.rgb = this.hslToRgb(angle / 360, 1, 0.5);
-          });
-          
+          for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+              const dx = x - radius;
+              const dy = y - radius;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+  
+              if (distance <= radius) {
+                let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                angle = (angle + 360) % 360;
+  
+                const hue = angle / 360;
+                const saturation = distance / radius;
+                const lightness = 1 - saturation / 2; // White blends towards center
+  
+                const rgb = hslToRgb(hue, saturation, lightness);
+  
+                const index = (y * canvas.width + x) * 4;
+                data[index] = rgb[0];      // R
+                data[index + 1] = rgb[1];  // G
+                data[index + 2] = rgb[2];  // B
+                data[index + 3] = 255;     // A
+              }
+            }
+          }
+          ctx.putImageData(image, 0, 0);
+        };
+  
+        // Convert HSL to RGB
+        function hslToRgb(h, s, l) {
+          let r, g, b;
+  
+          if (s === 0) {
+            r = g = b = l * 255;
+          } else {
+            const hue2rgb = (p, q, t) => {
+              if (t < 0) t += 1;
+              if (t > 1) t -= 1;
+              if (t < 1 / 6) return p + (q - p) * 6 * t;
+              if (t < 1 / 2) return q;
+              if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+              return p;
+            };
+  
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            r = hue2rgb(p, q, h + 1 / 3);
+            g = hue2rgb(p, q, h);
+            b = hue2rgb(p, q, h - 1 / 3);
+          }
+  
+          return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+        }
+  
+        // Handle clicks on the wheel
         
-        
-        // Submit button listener
+        let clickPosition = null; // To store click coordinates
+
+        // Handle clicks on the wheel
+        canvas.addEventListener("click", (event) => {
+          const rect = canvas.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          const pixel = ctx.getImageData(x, y, 1, 1).data;
+          const distance = Math.sqrt(Math.pow(x - radius, 2) + Math.pow(y - radius, 2));
+
+          if (distance <= radius) {
+            selectedRGB = { r: pixel[0], g: pixel[1], b: pixel[2] };
+            clickPosition = { x: x, y: y }; // Save click position
+            console.log("Selected RGB:", selectedRGB);
+            redrawWheelWithMarker();
+          }
+        });
+
+        // Redraw the wheel with the click marker
+        const redrawWheelWithMarker = () => {
+          drawColorWheel(); // Redraw the base color wheel
+
+          if (clickPosition) {
+            ctx.beginPath();
+            ctx.arc(clickPosition.x, clickPosition.y, 6, 0, 2 * Math.PI); // Draw marker
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)"; // Black marker with slight transparency
+            ctx.fill();
+            ctx.strokeStyle = "white"; // White outline for visibility
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          }
+        };
+
+        drawColorWheel();
+  
         display_element.querySelector("#jspsych-color-wheel-submit").addEventListener("click", () => {
-          response.rt = performance.now() - start_time;
+          const response = {
+            rt: performance.now() - start_time,
+            rgb: selectedRGB || { r: 255, g: 255, b: 255 },
+            stimulus: trial.stimulus,
+          };
+  
           this.endTrial(display_element, trial, response);
         });
-  
-        // Handle stimulus duration
-        if (trial.stimulus_duration !== null) {
-          this.jsPsych.pluginAPI.setTimeout(() => {
-            display_element.querySelector("#jspsych-color-wheel-stimulus").style.visibility = "hidden";
-          }, trial.stimulus_duration);
-        }
-  
-        // Handle trial duration
-        if (trial.trial_duration !== null) {
-          this.jsPsych.pluginAPI.setTimeout(() => {
-            this.endTrial(display_element, trial, response);
-          }, trial.trial_duration);
-        }
       }
   
       endTrial(display_element, trial, response) {
-        // Clear display
         display_element.innerHTML = "";
-  
-        // Collect trial data
-        const trial_data = {
-          rt: response.rt,
-          rgb: response.rgb,
-          stimulus: trial.stimulus,
-        };
-  
-        // Finish the trial
-        this.jsPsych.finishTrial(trial_data);
-      }
-  
-      // Convert HSL to RGB
-      hslToRgb(h, s, l) {
-        let r, g, b;
-  
-        if (s == 0) {
-          r = g = b = l; // Achromatic
-        } else {
-          const hue2rgb = (p, q, t) => {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1 / 6) return p + (q - p) * 6 * t;
-            if (t < 1 / 2) return q;
-            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-            return p;
-          };
-  
-          const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-          const p = 2 * l - q;
-          r = hue2rgb(p, q, h + 1 / 3);
-          g = hue2rgb(p, q, h);
-          b = hue2rgb(p, q, h - 1 / 3);
-        }
-  
-        return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+        this.jsPsych.finishTrial(response);
       }
     }
   
