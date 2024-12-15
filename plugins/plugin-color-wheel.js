@@ -137,6 +137,7 @@ var jsPsychColorWheel = (function (jsPsych) {
             selector.style.left = `${radius * Math.cos(angleRad) + centerX}px`;
             selector.style.top = `${radius * Math.sin(angleRad) + centerY}px`;
             selector.style.visibility = "visible"; // Make the selector visible
+            response.rgb = this.hslToRgb(angle / 360, 1, 0.5);
           });
           
         
