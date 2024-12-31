@@ -47,7 +47,7 @@ var jsPsychColorWheel = (function (jsPsych) {
           </div>
           <p id="jspsych-color-wheel-prompt" style="margin-bottom: 15px;">${trial.prompt}</p>
           <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
-          <button id="jspsych-color-wheel-submit" style="margin-top: 20px; display: block; margin: 20px auto;">Submit</button>
+           <button id="jspsych-color-wheel-submit" style="margin-top: 20px; display: block; margin: 20px auto;" disabled>Submit</button>
         </div>
       `;
   
@@ -58,6 +58,7 @@ var jsPsychColorWheel = (function (jsPsych) {
         const radius = canvas.width / 2;
         let selectedRGB = null;
         const start_time = performance.now();
+        const submitButton = display_element.querySelector("#jspsych-color-wheel-submit");
   
         // Function to draw the RGB color wheel with white gradient
         const drawColorWheel = () => {
@@ -135,6 +136,8 @@ var jsPsychColorWheel = (function (jsPsych) {
             clickPosition = { x: x, y: y }; // Save click position
             console.log("Selected RGB:", selectedRGB);
             redrawWheelWithMarker();
+            // Enable the submit button after a valid click
+            submitButton.disabled = false;
           }
         });
 
