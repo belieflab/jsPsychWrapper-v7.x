@@ -13,7 +13,7 @@ var jsPsychColorWheel = (function (jsPsych) {
         prompt: {
           type: jsPsych.ParameterType.HTML_STRING,
           pretty_name: "Prompt",
-          default: "What color does the grid seem to be?",
+          default: "What color does the object seem to be?",
           description: "The question or instruction displayed below the stimulus.",
         },
         stimulus_duration: {
@@ -41,15 +41,15 @@ var jsPsychColorWheel = (function (jsPsych) {
   
       trial(display_element, trial) {
         let html = `
-          <div id="jspsych-color-wheel-container" style="text-align: center;">
-            <div id="jspsych-color-wheel-stimulus">
-              <img src="${trial.stimulus}" style="max-width: 100%; height: auto; margin-bottom: 20px;">
-            </div>
-            <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
-            <p id="jspsych-color-wheel-prompt" style="margin-top: 10px;">${trial.prompt}</p>
-            <button id="jspsych-color-wheel-submit" style="margin-top: 15px;">Submit</button>
+        <div id="jspsych-color-wheel-container" style="text-align: center;">
+          <div id="jspsych-color-wheel-stimulus">
+            <img src="${trial.stimulus}" style="max-width: 90%; max-height: 90vh; height: auto; margin-bottom: 20px;">
           </div>
-        `;
+          <p id="jspsych-color-wheel-prompt" style="margin-bottom: 15px;">${trial.prompt}</p>
+          <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
+          <button id="jspsych-color-wheel-submit" style="margin-top: 20px; display: block; margin: 20px auto;">Submit</button>
+        </div>
+      `;
   
         display_element.innerHTML = html;
   
