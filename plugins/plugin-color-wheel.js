@@ -128,6 +128,9 @@ var jsPsychColorWheel = (function (jsPsych) {
             };
 
             // Function to draw the RGB color wheel with white gradient
+            // Generate random rotation angle at trial start
+            const rotationOffset = Math.random() * 360;
+            
             const drawColorWheel = () => {
                 const image = ctx.createImageData(canvas.width, canvas.height);
                 const data = image.data;
@@ -140,7 +143,7 @@ var jsPsychColorWheel = (function (jsPsych) {
 
                         if (distance <= radius) {
                             let angle = Math.atan2(dy, dx) * (180 / Math.PI);
-                            angle = (angle + 360) % 360;
+                            angle = (angle + rotationOffset + 360) % 360;
 
                             const hue = angle / 360;
                             const saturation = distance / radius;
