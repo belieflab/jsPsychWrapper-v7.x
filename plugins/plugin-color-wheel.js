@@ -1,11 +1,6 @@
 var jsPsychColorWheel = (function (jsPsych) {
     "use strict";
 
-    function toggleModal() {
-        const modal = document.getElementById("jspsych-color-wheel-stimulus");
-        modal.style.display = "block";
-    }
-
     const info = {
         name: "color-wheel-rating",
         parameters: {
@@ -13,15 +8,13 @@ var jsPsychColorWheel = (function (jsPsych) {
                 type: jsPsych.ParameterType.STRING,
                 pretty_name: "Stimulus",
                 default: undefined,
-                description:
-                    "The image or content to display above the color wheel.",
+                description: "The image or content to display above the color wheel.",
             },
             prompt: {
                 type: jsPsych.ParameterType.HTML_STRING,
                 pretty_name: "Prompt",
                 default: "What color does the object seem to be?",
-                description:
-                    "The question or instruction displayed below the stimulus.",
+                description: "The question or instruction displayed below the stimulus.",
             },
             stimulus_duration: {
                 type: jsPsych.ParameterType.INT,
@@ -47,31 +40,92 @@ var jsPsychColorWheel = (function (jsPsych) {
         }
 
         trial(display_element, trial) {
-            let html = `
-        <div id="jspsych-color-wheel-container" style="text-align: center;">
-          <div id="jspsych-color-wheel-stimulus">
-            <img src="${trial.stimulus}" style="max-width: 90%; max-height: 90vh; height: auto; margin-bottom: 20px;">
-          </div>
-          <button id="color-wheel-modal" onclick="toggleModal()" style="margin-top: 20px; display: block; margin: 20px auto;">Show</button>
+            // Add modal styles
+            const modalStyle = document.createElement('style');
+            modalStyle.textContent = `
+                .jspsych-color-wheel-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgb(187, 187, 187);
+                    z-index: 1000;
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .jspsych-color-wheel-modal-content {
+                    background-color: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    position: relative;
+                    max-width: 600px;
+                    width: 90%;
+                    text-align: center;
+                }
+                .jspsych-color-wheel-close {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    font-size: 32px;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    padding: 5px 10px;
+                    line-height: 1;
+                }
+            `;
+            document.head.appendChild(modalStyle);
 
-          <div style="display:none" id="jspsych-color-wheel-stimulus">
-          <p id="jspsych-color-wheel-prompt" style="margin-bottom: 15px;">${trial.prompt}</p>
-          <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
-           <button id="jspsych-color-wheel-submit" style="margin-top: 20px; display: block; margin: 20px auto;" disabled>Submit</button>
-           </div>
-        </div>
-      `;
+            let html = `
+                <div id="jspsych-color-wheel-container" style="text-align: center;">
+                    <div id="jspsych-color-wheel-stimulus">
+                        <img src="${trial.stimulus}" style="max-width: 90%; max-height: 90vh; height: auto; margin-bottom: 20px;">
+                    </div>
+                    <p id="jspsych-color-wheel-prompt" style="margin-bottom: 15px;">${trial.prompt}</p>
+                    <button id="show-color-wheel" class="jspsych-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 22 1-1h3l9-9"></path><path d="M3 21v-3l9-9"></path><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z"></path></svg>
+                        Select Color
+                    </button>
+                    
+                    <div id="color-wheel-modal" class="jspsych-color-wheel-modal">
+                        <div class="jspsych-color-wheel-modal-content">
+                            <button class="jspsych-color-wheel-close">&times;</button>
+                            <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
+                            <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="margin-top: 20px;" disabled>Submit</button>
+                        </div>
+                    </div>
+                </div>
+            `;
 
             display_element.innerHTML = html;
 
+            const modal = document.getElementById("color-wheel-modal");
+            const showButton = document.getElementById("show-color-wheel");
+            const closeButton = document.querySelector(".jspsych-color-wheel-close");
             const canvas = document.getElementById("color-wheel");
             const ctx = canvas.getContext("2d");
             const radius = canvas.width / 2;
             let selectedRGB = null;
             const start_time = performance.now();
-            const submitButton = display_element.querySelector(
-                "#jspsych-color-wheel-submit"
-            );
+            const submitButton = display_element.querySelector("#jspsych-color-wheel-submit");
+
+            // Modal controls
+            showButton.onclick = () => {
+                modal.style.display = "flex";
+            };
+
+            closeButton.onclick = () => {
+                modal.style.display = "none";
+            };
+
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
 
             // Function to draw the RGB color wheel with white gradient
             const drawColorWheel = () => {
@@ -90,15 +144,15 @@ var jsPsychColorWheel = (function (jsPsych) {
 
                             const hue = angle / 360;
                             const saturation = distance / radius;
-                            const lightness = 1 - saturation / 2; // White blends towards center
+                            const lightness = 1 - saturation / 2;
 
                             const rgb = hslToRgb(hue, saturation, lightness);
 
                             const index = (y * canvas.width + x) * 4;
-                            data[index] = rgb[0]; // R
-                            data[index + 1] = rgb[1]; // G
-                            data[index + 2] = rgb[2]; // B
-                            data[index + 3] = 255; // A
+                            data[index] = rgb[0];
+                            data[index + 1] = rgb[1];
+                            data[index + 2] = rgb[2];
+                            data[index + 3] = 255;
                         }
                     }
                 }
@@ -128,16 +182,10 @@ var jsPsychColorWheel = (function (jsPsych) {
                     b = hue2rgb(p, q, h - 1 / 3);
                 }
 
-                return [
-                    Math.round(r * 255),
-                    Math.round(g * 255),
-                    Math.round(b * 255),
-                ];
+                return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
             }
 
-            // Handle clicks on the wheel
-
-            let clickPosition = null; // To store click coordinates
+            let clickPosition = null;
 
             // Handle clicks on the wheel
             canvas.addEventListener("click", (event) => {
@@ -146,36 +194,26 @@ var jsPsychColorWheel = (function (jsPsych) {
                 const y = event.clientY - rect.top;
 
                 const pixel = ctx.getImageData(x, y, 1, 1).data;
-                const distance = Math.sqrt(
-                    Math.pow(x - radius, 2) + Math.pow(y - radius, 2)
-                );
+                const distance = Math.sqrt(Math.pow(x - radius, 2) + Math.pow(y - radius, 2));
 
                 if (distance <= radius) {
                     selectedRGB = { r: pixel[0], g: pixel[1], b: pixel[2] };
-                    clickPosition = { x: x, y: y }; // Save click position
-                    console.log("Selected RGB:", selectedRGB);
+                    clickPosition = { x: x, y: y };
                     redrawWheelWithMarker();
-                    // Enable the submit button after a valid click
                     submitButton.disabled = false;
                 }
             });
 
             // Redraw the wheel with the click marker
             const redrawWheelWithMarker = () => {
-                drawColorWheel(); // Redraw the base color wheel
+                drawColorWheel();
 
                 if (clickPosition) {
                     ctx.beginPath();
-                    ctx.arc(
-                        clickPosition.x,
-                        clickPosition.y,
-                        6,
-                        0,
-                        2 * Math.PI
-                    ); // Draw marker
-                    ctx.fillStyle = "rgba(0, 0, 0, 0.7)"; // Black marker with slight transparency
+                    ctx.arc(clickPosition.x, clickPosition.y, 6, 0, 2 * Math.PI);
+                    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
                     ctx.fill();
-                    ctx.strokeStyle = "white"; // White outline for visibility
+                    ctx.strokeStyle = "white";
                     ctx.lineWidth = 2;
                     ctx.stroke();
                 }
@@ -183,17 +221,16 @@ var jsPsychColorWheel = (function (jsPsych) {
 
             drawColorWheel();
 
-            display_element
-                .querySelector("#jspsych-color-wheel-submit")
-                .addEventListener("click", () => {
-                    const response = {
-                        rt: performance.now() - start_time,
-                        rgb: selectedRGB || { r: 255, g: 255, b: 255 },
-                        stimulus: trial.stimulus,
-                    };
+            submitButton.addEventListener("click", () => {
+                const response = {
+                    rt: performance.now() - start_time,
+                    rgb: selectedRGB || { r: 255, g: 255, b: 255 },
+                    stimulus: trial.stimulus,
+                };
 
-                    this.endTrial(display_element, trial, response);
-                });
+                modal.style.display = "none";
+                this.endTrial(display_element, trial, response);
+            });
         }
 
         endTrial(display_element, trial, response) {
