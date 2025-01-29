@@ -96,7 +96,10 @@ var jsPsychColorWheel = (function (jsPsych) {
                     <div id="color-wheel-modal" class="jspsych-color-wheel-modal">
                         <div class="jspsych-color-wheel-modal-content">
                             <button class="jspsych-color-wheel-close">&times;</button>
-                            <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
+                            <div style="display: flex; align-items: center; gap: 20px; justify-content: center;">
+                                <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
+                                <div id="color-preview" style="width: 100px; height: 100px; border: 2px solid #ccc; border-radius: 8px;"></div>
+                            </div>
                             <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="margin-top: 20px;" disabled>Submit</button>
                         </div>
                     </div>
@@ -211,6 +214,10 @@ var jsPsychColorWheel = (function (jsPsych) {
                     clickPosition = { x: x, y: y };
                     redrawWheelWithMarker();
                     submitButton.disabled = false;
+                    
+                    // Update color preview
+                    const preview = document.getElementById('color-preview');
+                    preview.style.backgroundColor = `rgb(${selectedRGB.r}, ${selectedRGB.g}, ${selectedRGB.b})`;
                 }
             });
 
