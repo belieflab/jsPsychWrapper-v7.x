@@ -76,12 +76,15 @@ var jsPsychColorWheel = (function (jsPsych) {
                     padding: 5px 10px;
                     line-height: 1;
                 }
+                .jspsych-color-wheel-stimulus {
+                    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 22 1-1h3l9-9'%3E%3C/path%3E%3Cpath d='M3 21v-3l9-9'%3E%3C/path%3E%3Cpath d='m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z'%3E%3C/path%3E%3C/svg%3E") 2 2, pointer;
+                }
             `;
             document.head.appendChild(modalStyle);
 
             let html = `
                 <div id="jspsych-color-wheel-container" style="text-align: center;">
-                    <div id="jspsych-color-wheel-stimulus">
+                    <div id="jspsych-color-wheel-stimulus" class="jspsych-color-wheel-stimulus">
                         <img src="${trial.stimulus}" style="max-width: 90%; max-height: 90vh; height: auto; margin-bottom: 20px;">
                     </div>
                     <p id="jspsych-color-wheel-prompt" style="margin-bottom: 15px;">${trial.prompt}</p>
@@ -106,6 +109,7 @@ var jsPsychColorWheel = (function (jsPsych) {
             const showButton = document.getElementById("show-color-wheel");
             const closeButton = document.querySelector(".jspsych-color-wheel-close");
             const canvas = document.getElementById("color-wheel");
+            const stimulusDiv = document.getElementById("jspsych-color-wheel-stimulus");
             const ctx = canvas.getContext("2d");
             const radius = canvas.width / 2;
             let selectedRGB = null;
@@ -113,9 +117,12 @@ var jsPsychColorWheel = (function (jsPsych) {
             const submitButton = display_element.querySelector("#jspsych-color-wheel-submit");
 
             // Modal controls
-            showButton.onclick = () => {
+            const openModal = () => {
                 modal.style.display = "flex";
             };
+
+            showButton.onclick = openModal;
+            stimulusDiv.onclick = openModal;  // Add click handler to stimulus
 
             closeButton.onclick = () => {
                 modal.style.display = "none";
