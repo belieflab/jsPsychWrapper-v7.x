@@ -1,4 +1,4 @@
-var jsPsychColorWheel = (function (jsPsych) {
+var jsPsychColorWheel = (function(jsPsych) {
     "use strict";
 
     const info = {
@@ -8,30 +8,30 @@ var jsPsychColorWheel = (function (jsPsych) {
                 type: jsPsych.ParameterType.STRING,
                 pretty_name: "Stimulus",
                 default: undefined,
-                description: "The image or content to display above the color wheel.",
+                description: "The image or content to display above the color wheel."
             },
             prompt: {
                 type: jsPsych.ParameterType.HTML_STRING,
                 pretty_name: "Prompt",
                 default: "What color does the object seem to be?",
-                description: "The question or instruction displayed below the stimulus.",
+                description: "The question or instruction displayed below the stimulus."
             },
             stimulus_duration: {
                 type: jsPsych.ParameterType.INT,
                 pretty_name: "Stimulus duration",
-                default: null,
+                default: null
             },
             trial_duration: {
                 type: jsPsych.ParameterType.INT,
                 pretty_name: "Trial duration",
-                default: null,
+                default: null
             },
             response_ends_trial: {
                 type: jsPsych.ParameterType.BOOL,
                 pretty_name: "Response ends trial",
-                default: true,
-            },
-        },
+                default: true
+            }
+        }
     };
 
     class ColorWheelPlugin {
@@ -56,6 +56,7 @@ var jsPsychColorWheel = (function (jsPsych) {
                     justify-content: center;
                     align-items: center;
                 }
+
                 .jspsych-color-wheel-modal-content {
                     background-color: white;
                     padding: 20px;
@@ -65,6 +66,7 @@ var jsPsychColorWheel = (function (jsPsych) {
                     width: 90%;
                     text-align: center;
                 }
+
                 .jspsych-color-wheel-close {
                     position: absolute;
                     right: 10px;
@@ -76,6 +78,7 @@ var jsPsychColorWheel = (function (jsPsych) {
                     padding: 5px 10px;
                     line-height: 1;
                 }
+
                 .jspsych-color-wheel-stimulus {
                     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 22 1-1h3l9-9'%3E%3C/path%3E%3Cpath d='M3 21v-3l9-9'%3E%3C/path%3E%3Cpath d='m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z'%3E%3C/path%3E%3C/svg%3E") 2 2, pointer;
                 }
@@ -83,16 +86,41 @@ var jsPsychColorWheel = (function (jsPsych) {
             document.head.appendChild(modalStyle);
 
             let html = `
-                <div id="jspsych-color-wheel-container" style="text-align: center;">
-                    <div id="jspsych-color-wheel-stimulus" class="jspsych-color-wheel-stimulus">
-                        <img src="${trial.stimulus}" style="max-width: 90%; max-height: 90vh; height: auto; margin-bottom: 20px;">
+                <div id="jspsych-color-wheel-container" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0;
+                    font-family: Arial, sans-serif;">
+                    <div id="jspsych-color-wheel-stimulus" class="jspsych-color-wheel-stimulus" style="margin-top: -1rem;">
+                        <img src="${trial.stimulus}" style="max-height: 80vh; width: auto; object-fit: contain;">
                     </div>
-                    <p id="jspsych-color-wheel-prompt" style="margin-bottom: 15px;">${trial.prompt}</p>
-                    <button id="show-color-wheel" class="jspsych-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 22 1-1h3l9-9"></path><path d="M3 21v-3l9-9"></path><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z"></path></svg>
-                        Select Color
-                    </button>
-                    
+
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
+                        <p id="jspsych-color-wheel-prompt" style="
+                            font-size: 1.1rem;
+                            color: #2d3748;
+                            margin: 0;">
+                            ${trial.prompt}
+                        </p>
+                        <button id="show-color-wheel" class="jspsych-btn" style="
+                            padding: 0.5rem;
+                            border: 1px solid #000;
+                            background: none;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" 
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m2 22 1-1h3l9-9"></path>
+                                <path d="M3 21v-3l9-9"></path>
+                                <path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z"></path>
+                            </svg>
+                        </button>
+                    </div>
+
                     <div id="color-wheel-modal" class="jspsych-color-wheel-modal">
                         <div class="jspsych-color-wheel-modal-content">
                             <button class="jspsych-color-wheel-close">&times;</button>
@@ -137,10 +165,10 @@ var jsPsychColorWheel = (function (jsPsych) {
                 }
             };
 
-            // Function to draw the RGB color wheel with white gradient
             // Generate random rotation angle at trial start
             const rotationOffset = Math.random() * 360;
             
+            // Function to draw the RGB color wheel with white gradient
             const drawColorWheel = () => {
                 const image = ctx.createImageData(canvas.width, canvas.height);
                 const data = image.data;
@@ -242,7 +270,7 @@ var jsPsychColorWheel = (function (jsPsych) {
                 const response = {
                     rt: performance.now() - start_time,
                     rgb: selectedRGB || { r: 255, g: 255, b: 255 },
-                    stimulus: trial.stimulus,
+                    stimulus: trial.stimulus
                 };
 
                 modal.style.display = "none";
