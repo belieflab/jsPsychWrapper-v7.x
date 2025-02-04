@@ -153,7 +153,7 @@ var jsPsychColorWheel = (function(jsPsych) {
             };
 
             showButton.onclick = openModal;
-            stimulusDiv.onclick = openModal;  // Add click handler to stimulus
+            stimulusDiv.onclick = openModal;
 
             closeButton.onclick = () => {
                 modal.style.display = "none";
@@ -168,6 +168,25 @@ var jsPsychColorWheel = (function(jsPsych) {
             // Generate random rotation angle at trial start
             const rotationOffset = Math.random() * 360;
             
+            // Function to get color at specific coordinates
+            const getColorAtPosition = (x, y) => {
+                const dx = x - radius;
+                const dy = y - radius;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance <= radius) {
+                    let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                    angle = (angle + rotationOffset + 360) % 360;
+
+                    const hue = angle / 360;
+                    const saturation = distance / radius;
+                    const lightness = 1 - saturation / 2;
+
+                    return hslToRgb(hue, saturation, lightness);
+                }
+                return null;
+            };
+            
             // Function to draw the RGB color wheel with white gradient
             const drawColorWheel = () => {
                 const image = ctx.createImageData(canvas.width, canvas.height);
@@ -175,20 +194,8 @@ var jsPsychColorWheel = (function(jsPsych) {
 
                 for (let y = 0; y < canvas.height; y++) {
                     for (let x = 0; x < canvas.width; x++) {
-                        const dx = x - radius;
-                        const dy = y - radius;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance <= radius) {
-                            let angle = Math.atan2(dy, dx) * (180 / Math.PI);
-                            angle = (angle + rotationOffset + 360) % 360;
-
-                            const hue = angle / 360;
-                            const saturation = distance / radius;
-                            const lightness = 1 - saturation / 2;
-
-                            const rgb = hslToRgb(hue, saturation, lightness);
-
+                        const rgb = getColorAtPosition(x, y);
+                        if (rgb) {
                             const index = (y * canvas.width + x) * 4;
                             data[index] = rgb[0];
                             data[index + 1] = rgb[1];
@@ -233,19 +240,25 @@ var jsPsychColorWheel = (function(jsPsych) {
                 const rect = canvas.getBoundingClientRect();
                 const x = event.clientX - rect.left;
                 const y = event.clientY - rect.top;
-
-                const pixel = ctx.getImageData(x, y, 1, 1).data;
-                const distance = Math.sqrt(Math.pow(x - radius, 2) + Math.pow(y - radius, 2));
+                
+                const dx = x - radius;
+                const dy = y - radius;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
                 if (distance <= radius) {
-                    selectedRGB = { r: pixel[0], g: pixel[1], b: pixel[2] };
-                    clickPosition = { x: x, y: y };
-                    redrawWheelWithMarker();
-                    submitButton.disabled = false;
-                    
-                    // Update color preview
-                    const preview = document.getElementById('color-preview');
-                    preview.style.backgroundColor = `rgb(${selectedRGB.r}, ${selectedRGB.g}, ${selectedRGB.b})`;
+                    clickPosition = { x, y };
+                    const rgb = getColorAtPosition(x, y);
+                    if (rgb) {
+                        selectedRGB = { r: rgb[0], g: rgb[1], b: rgb[2] };
+                        submitButton.disabled = false;
+                        
+                        // Update color preview
+                        const preview = document.getElementById('color-preview');
+                        preview.style.backgroundColor = `rgb(${selectedRGB.r}, ${selectedRGB.g}, ${selectedRGB.b})`;
+                        
+                        // Redraw wheel with marker
+                        redrawWheelWithMarker();
+                    }
                 }
             });
 
@@ -270,7 +283,13 @@ var jsPsychColorWheel = (function(jsPsych) {
                 const response = {
                     rt: performance.now() - start_time,
                     rgb: selectedRGB || { r: 255, g: 255, b: 255 },
-                    stimulus: trial.stimulus
+                    stimulus: trial.stimulus,
+                    x: clickPosition ? clickPosition.x : null,
+                    y: clickPosition ? clickPosition.y : null,
+                    distance_from_center: clickPosition ? 
+                        Math.sqrt(Math.pow(clickPosition.x - radius, 2) + Math.pow(clickPosition.y - radius, 2)) / radius : null,
+                    angle: clickPosition ? 
+                        ((Math.atan2(clickPosition.y - radius, clickPosition.x - radius) * (180 / Math.PI) + rotationOffset + 360) % 360) : null
                 };
 
                 modal.style.display = "none";
