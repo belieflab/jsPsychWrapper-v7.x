@@ -33,6 +33,7 @@ if (isset($_GET["src_subject_id"])) {
     $subjectkey = $_GET["subjectkey"] ?? null;
     $sex = $_GET["sex"] ?? null;
     $site = $_GET["site"] ?? null;
+    $subsiteid = $_GET["subsiteid"] ?? null;
     $interview_age = $_GET["interview_age"] ?? null;
     $phenotype = $_GET["phenotype"] ?? null;
     $visit = $_GET["visit"] ?? null;
@@ -153,6 +154,7 @@ const writeCandidateKeys = (data) => {
       data.subjectkey = subjectkey;
       data.sex = sex;
       data.site = site;
+      data.subsiteid = subsiteid;
       data.interview_age = interview_age;
       data.phenotype = phenotype;
 
