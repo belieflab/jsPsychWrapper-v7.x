@@ -1,5 +1,8 @@
 "use strict";
 
+// Only implement attention check while the experiment is running
+let experimentComplete = false;
+
 const jsPsych = initJsPsych({
     show_progress_bar: true,
 });
@@ -23,7 +26,7 @@ const config = {
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[1],
-    key_forward: " ",
+    on_load: () => handleFullscreen(),
 };
 
 const instruction1 = {
@@ -76,7 +79,7 @@ const dataSave = {
     stimulus: dataSaveAnimation(),
     choices: "NO_KEYS",
     trial_duration: 5000,
-    on_finish: writeCsvRedirect,
+    on_finish:() => {writeCsvRedirect; experimentComplete = true;}
 };
 
 // Load and execute "exp/main.js" using jQuery's $.getScript method.

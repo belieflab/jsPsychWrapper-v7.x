@@ -35,15 +35,18 @@
 </div>
 
 
+
+</div>
+
     <h4 style="color:black">Sex at Birth:</h4>
 
 <label class="custom-radio-button">Male
-  <input type="radio" id="male" name="sex" value="male" class="custom-radio">
+  <input type="radio" id="male" name="sex" value="M" class="custom-radio">
   <span class="checkmark"></span>
 </label>
 
 <label class="custom-radio-button">Female
-  <input type="radio" id="female" name="sex" value="female" class="custom-radio">
+  <input type="radio" id="female" name="sex" value="F" class="custom-radio">
   <span class="checkmark"></span>
 </label>
 
@@ -95,3 +98,16 @@
 </form>
 
 </div>
+
+
+<script>
+  // Run the test and load the experiment if successful
+
+document.addEventListener('DOMContentLoaded', function() {
+      testDataSave().then((result) => {
+        if (!result) {
+          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
+        }
+      });
+    });
+</script>
