@@ -1,6 +1,6 @@
 <?php
 // Initialize variables to null
-$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $interview_age = $phenotype = $visit = $week = null;
+$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $subsiteid = $interview_age = $phenotype = $visit = $week = null;
 
 // Check for workerId and set $subjectId
 if (isset($_GET["workerId"])) {
@@ -121,6 +121,7 @@ let subjectId = "<?php echo $subjectId; ?>" || undefined;
 let subjectkey = "<?php echo $subjectkey?>" || undefined;
 let sex = "<?php echo $sex?>" || undefined;
 let site = "<?php echo $site?>" || undefined;
+let subsiteid = "<?php echo $subsiteid?>" || undefined;
 let interview_age = "<?php echo $interview_age?>" || undefined;
 let phenotype = "<?php echo $phenotype?>" || undefined;
 
