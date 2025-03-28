@@ -95,7 +95,7 @@ var jsPsychColorWheel = (function(jsPsych) {
                     padding: 0;
                     font-family: Arial, sans-serif;">
                     <div id="jspsych-color-wheel-stimulus" class="jspsych-color-wheel-stimulus" style="margin-top: -1rem;">
-                        <img src="${trial.stimulus}" style="max-height: 70vh; width: auto; object-fit: contain;">
+                        <img src="${trial.stimulus}" style="max-height: 50vh; width: auto; object-fit: contain;">
                     </div>
 
                     <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
