@@ -30,6 +30,12 @@ var jsPsychColorWheel = (function(jsPsych) {
                 type: jsPsych.ParameterType.BOOL,
                 pretty_name: "Response ends trial",
                 default: true
+            },
+            theme: {
+                type: jsPsych.ParameterType.STRING,
+                pretty_name: "Theme",
+                default: "light",
+                description: "The color theme to use. Can be 'light' or 'dark'."
             }
         }
     };
@@ -40,8 +46,25 @@ var jsPsychColorWheel = (function(jsPsych) {
         }
 
         trial(display_element, trial) {
+            // Determine theme settings
+            const isDarkTheme = trial.theme === "dark";
+            
+            // Theme-specific styles
+            const themeStyles = {
+                backgroundColor: isDarkTheme ? "#000" : "#fff",
+                modalBackgroundColor: isDarkTheme ? "rgba(0, 0, 0, 0.8)" : "rgb(187, 187, 187)",
+                modalContentBackgroundColor: isDarkTheme ? "#222" : "white",
+                textColor: isDarkTheme ? "#ffffff" : "#2d3748",
+                borderColor: isDarkTheme ? "#fff" : "#000",
+                previewBorderColor: isDarkTheme ? "#444" : "#ccc",
+                submitBtnStyle: isDarkTheme ? "background-color: #333; color: #fff; border: 1px solid #555;" : "",
+                cursorIconColor: isDarkTheme ? "white" : "black",
+                bodyBackgroundColor: isDarkTheme ? "#000" : "inherit"
+            };
+
             // Add modal styles
             const modalStyle = document.createElement('style');
+            modalStyle.id = "jspsych-color-wheel-styles";
             modalStyle.textContent = `
                 .jspsych-color-wheel-modal {
                     display: none;
@@ -50,7 +73,7 @@ var jsPsychColorWheel = (function(jsPsych) {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: rgb(187, 187, 187);
+                    background-color: ${themeStyles.modalBackgroundColor};
                     z-index: 1000;
                     display: none;
                     justify-content: center;
@@ -58,13 +81,14 @@ var jsPsychColorWheel = (function(jsPsych) {
                 }
 
                 .jspsych-color-wheel-modal-content {
-                    background-color: white;
+                    background-color: ${themeStyles.modalContentBackgroundColor};
                     padding: 20px;
                     border-radius: 10px;
                     position: relative;
                     max-width: 600px;
                     width: 90%;
                     text-align: center;
+                    color: ${themeStyles.textColor};
                 }
 
                 .jspsych-color-wheel-close {
@@ -77,10 +101,15 @@ var jsPsychColorWheel = (function(jsPsych) {
                     border: none;
                     padding: 5px 10px;
                     line-height: 1;
+                    color: ${themeStyles.textColor};
                 }
 
                 .jspsych-color-wheel-stimulus {
-                    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 22 1-1h3l9-9'%3E%3C/path%3E%3Cpath d='M3 21v-3l9-9'%3E%3C/path%3E%3Cpath d='m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z'%3E%3C/path%3E%3C/svg%3E") 2 2, pointer;
+                    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='${themeStyles.cursorIconColor}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 22 1-1h3l9-9'%3E%3C/path%3E%3Cpath d='M3 21v-3l9-9'%3E%3C/path%3E%3Cpath d='m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z'%3E%3C/path%3E%3C/svg%3E") 2 2, pointer;
+                }
+                
+                body {
+                    background-color: ${themeStyles.bodyBackgroundColor};
                 }
             `;
             document.head.appendChild(modalStyle);
@@ -93,7 +122,8 @@ var jsPsychColorWheel = (function(jsPsych) {
                     max-width: 1200px;
                     margin: 0 auto;
                     padding: 0;
-                    font-family: Arial, sans-serif;">
+                    font-family: Arial, sans-serif;
+                    background-color: ${themeStyles.backgroundColor};">
                     <div id="jspsych-color-wheel-stimulus" class="jspsych-color-wheel-stimulus" style="margin-top: -1rem;">
                         <img src="${trial.stimulus}" style="max-height: 50vh; width: auto; object-fit: contain;">
                     </div>
@@ -101,17 +131,18 @@ var jsPsychColorWheel = (function(jsPsych) {
                     <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
                         <p id="jspsych-color-wheel-prompt" style="
                             font-size: 1.1rem;
-                            color: #2d3748;
+                            color: ${themeStyles.textColor};
                             margin: 0;">
                             ${trial.prompt}
                         </p>
                         <button id="show-color-wheel" class="jspsych-btn" style="
                             padding: 0.5rem;
-                            border: 1px solid #000;
+                            border: 1px solid ${themeStyles.borderColor};
                             background: none;
                             cursor: pointer;
                             display: flex;
-                            align-items: center;">
+                            align-items: center;
+                            color: ${themeStyles.textColor};">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" 
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m2 22 1-1h3l9-9"></path>
@@ -126,9 +157,9 @@ var jsPsychColorWheel = (function(jsPsych) {
                             <button class="jspsych-color-wheel-close">&times;</button>
                             <div style="display: flex; align-items: center; gap: 20px; justify-content: center;">
                                 <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
-                                <div id="color-preview" style="width: 100px; height: 100px; border: 2px solid #ccc; border-radius: 8px;"></div>
+                                <div id="color-preview" style="width: 100px; height: 100px; border: 2px solid ${themeStyles.previewBorderColor}; border-radius: 8px;"></div>
                             </div>
-                            <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="margin-top: 20px;" disabled>Submit</button>
+                            <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="margin-top: 20px; ${themeStyles.submitBtnStyle}" disabled>Submit</button>
                         </div>
                     </div>
                 </div>
@@ -298,6 +329,12 @@ var jsPsychColorWheel = (function(jsPsych) {
         }
 
         endTrial(display_element, trial, response) {
+            // Clean up the style element to prevent it from affecting other trials
+            const styleElement = document.getElementById("jspsych-color-wheel-styles");
+            if (styleElement) {
+                styleElement.remove();
+            }
+            
             display_element.innerHTML = "";
             this.jsPsych.finishTrial(response);
         }
