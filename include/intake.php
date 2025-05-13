@@ -91,7 +91,7 @@
 </form>
 <br> -->
 <!-- <button id="submitButton" class="loadMain" onclick="site = validateSite(), src_subject_id = validateSubject(), subjectkey = validateGUID(), interview_age = validateAge(), sex = validateSex(), handedness = validateHandedness(), /*validateBrightness(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button> -->
-<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateIntake()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="validateIntake()" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
@@ -101,13 +101,9 @@
 
 
 <script>
-  // Run the test and load the experiment if successful
-
-document.addEventListener('DOMContentLoaded', function() {
-      testDataSave().then((result) => {
-        if (!result) {
-          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
-        }
-      });
-    });
+  // Don't run test save on page load - only after validation
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("INTAKE PAGE LOADED: Ready for user input");
+    restoreFormValues(); // Keep this to restore saved form values
+  });
 </script>
