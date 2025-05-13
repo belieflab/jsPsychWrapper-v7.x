@@ -45,8 +45,8 @@ if (isset($_GET["src_subject_id"])) {
 
 // Check for src_subject_id and set related variables
 if (isset($_GET["ID"])) {
-    $src_subject_id = $_GET["ID"];
-    $subjectId = $src_subject_id;
+    $ID = $_GET["ID"];
+    $subjectId = $ID;
 
     // Set Hopkins CPCR variables
     $studyId = $_GET["studyId"] ?? null;
@@ -153,7 +153,7 @@ let studyId = "<?php echo $studyId?>" || undefined;
 let condition = "<?php echo $condition?>" || undefined;
 
 // ID is set to src_subject_id for the Hopkins CPCR study
-let ID = "<?php echo $subjectId?>" || undefined;
+let ID = "<?php echo $ID?>" || undefined;
 
 /**
  * Updates the jsPsych data object with candidate keys and additional information based on the context.
@@ -201,9 +201,10 @@ const writeCandidateKeys = (data) => {
 
   if (ID) {
 
-    data.ID = subjectId;
+    data.ID = ID;
     data.date = isoDate;
     data.studyId = studyId;
+    data.handedness = handedness;
 
     if (visit) {
         data.visit = visit;
