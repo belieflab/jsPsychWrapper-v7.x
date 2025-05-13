@@ -1,6 +1,6 @@
 <?php
 // Initialize variables to null
-$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $subsiteid = $interview_age = $phenotype = $visit = $week = null;
+$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $subsiteid = $interview_age = $phenotype = $visit = $week = $arm = $ID = $condition = null;
 
 // Check for workerId and set $subjectId
 if (isset($_GET["workerId"])) {
@@ -38,6 +38,20 @@ if (isset($_GET["src_subject_id"])) {
     $phenotype = $_GET["phenotype"] ?? null;
     $visit = $_GET["visit"] ?? null;
     $week = $_GET["week"] ?? null;
+
+    // Set arm variable
+    $arm = $_GET["arm"] ?? null;
+}
+
+// Check for src_subject_id and set related variables
+if (isset($_GET["ID"])) {
+    $src_subject_id = $_GET["ID"];
+    $subjectId = $src_subject_id;
+
+    // Set Hopkins CPCR variables
+    $studyId = $_GET["studyId"] ?? null;
+    $visit = $_GET["visit"] ?? null;
+    $condition = $_GET["condition"] ?? null;
 }
 
 
@@ -129,6 +143,18 @@ let phenotype = "<?php echo $phenotype?>" || undefined;
 let visit = "<?php echo $visit?>" || undefined;
 let week = "<?php echo $week?>" || undefined;
 
+// arm is a variable that will be used to pass the appropriate identifier to saveData
+let arm = "<?php echo $arm?>" || undefined;
+
+// studyId is the hybrid variable that will be used to pass the appropriate identifier to saveData
+let studyId = "<?php echo $studyId?>" || undefined;
+
+// condition is ARM for the Hopkins CPCR study
+let condition = "<?php echo $condition?>" || undefined;
+
+// ID is set to src_subject_id for the Hopkins CPCR study
+let ID = "<?php echo $subjectId?>" || undefined;
+
 /**
  * Updates the jsPsych data object with candidate keys and additional information based on the context.
  * This function takes into account different scenarios such as when src_subject_id, workerId,
@@ -167,8 +193,27 @@ const writeCandidateKeys = (data) => {
       if (week) {
           data.week = week;
       }
+      if (arm) {
+          data.arm = arm;
+      }
     
   }
+
+  if (ID) {
+
+    data.ID = subjectId;
+    data.date = isoDate;
+    data.studyId = studyId;
+
+    if (visit) {
+        data.visit = visit;
+    }
+
+    if (condition) {
+        data.condition = condition;
+    }
+
+    }
 
   if (workerId) {
 
@@ -182,6 +227,9 @@ const writeCandidateKeys = (data) => {
       }
       if (week) {
           data.week = week;
+      }
+      if (arm) {
+          data.arm = arm;
       }
 
   }
@@ -199,6 +247,9 @@ const writeCandidateKeys = (data) => {
       if (week) {
           data.week = week;
       }
+      if (arm) {
+          data.arm = arm;
+      }
 
   }
 
@@ -215,6 +266,9 @@ const writeCandidateKeys = (data) => {
       if (week) {
           data.week = week;
       }
+      if (arm) {
+          data.arm = arm;
+      }
 
   }
 
@@ -228,6 +282,10 @@ const writeCandidateKeys = (data) => {
 
   if (week) {
     data.week = week;
+  }
+
+  if (arm) {
+    data.arm = arm;
   }
   
 
