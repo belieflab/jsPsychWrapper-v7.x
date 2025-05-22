@@ -14,12 +14,13 @@
 
   
     <h4 style="color:black">Subject ID:</h4>
-    <input required id="subject" type="text" name="subject" minlength="8" maxlength="8" class="custom-input">
+    <input required id="subject" type="text" name="subject" class="custom-input">
     
-    <!-- GUID -->
-    <h4 style="color:black">GUID:</h4>
-    <input required id="guid" type="text" name="guid" minlength="12" maxlength="12" oninput="this.value = this.value.toUpperCase()" class="custom-input">
-    <!-- <input required type="hidden" id="guid" name="guid" value="< ?php echo $guid ?>"> -->
+    <!-- GUID - only show if NIH study -->
+    <div id="guid-container" style="display: none;">
+        <h4 style="color:black">GUID:</h4>
+        <input id="guid" type="text" name="guid" minlength="12" maxlength="12" oninput="this.value = this.value.toUpperCase()" class="custom-input">
+    </div>
 
     <!-- <button onclick="submitIntake()">submit subjectid</button> -->
 
@@ -101,9 +102,30 @@
 
 
 <script>
-  // Don't run test save on page load - only after validation
+  // **REMOVED**: Don't run test save on page load for intake mode
+  // The test save will be run after validation passes instead
   document.addEventListener('DOMContentLoaded', function() {
     console.log("INTAKE PAGE LOADED: Ready for user input");
     restoreFormValues(); // Keep this to restore saved form values
+    
+    // Show/hide GUID field based on NIH configuration
+    if (typeof intake !== 'undefined' && intake.nih === true) {
+        console.log("NIH study detected - showing GUID field");
+        const guidContainer = document.getElementById("guid-container");
+        const guidInput = document.getElementById("guid");
+        if (guidContainer && guidInput) {
+            guidContainer.style.display = "block";
+            guidInput.setAttribute("required", "required");
+        }
+    } else {
+        console.log("Non-NIH study - GUID field remains hidden");
+    }
+    
+    // **REMOVED**: No automatic test save here
+    // testDataSave().then((result) => {
+    //   if (!result) {
+    //     alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
+    //   }
+    // });
   });
 </script>
