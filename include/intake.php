@@ -111,3 +111,35 @@
     }
   });
 </script>
+
+<!-- Add this script at the end of intake.php, just before the closing </div> tag -->
+<script>
+  // Clear any previous validation state
+  window.validateAlerts = [];
+  
+  // Ensure proper event handling for the submit button
+  document.addEventListener('DOMContentLoaded', function() {
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+      // Remove any existing click handlers to prevent duplicates
+      const newButton = submitButton.cloneNode(true);
+      submitButton.parentNode.replaceChild(newButton, submitButton);
+      
+      // Add a clean event handler
+      newButton.addEventListener('click', function(event) {
+        // Prevent the default button behavior
+        event.preventDefault();
+        
+        // Reset validation alerts
+        window.validateAlerts = [];
+        
+        // Call validation function
+        if (typeof validateIntake === 'function') {
+          validateIntake();
+        } else {
+          alert('Validation function not found. Please refresh the page.');
+        }
+      });
+    }
+  });
+</script>
