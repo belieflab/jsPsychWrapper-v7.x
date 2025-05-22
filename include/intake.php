@@ -73,19 +73,7 @@
     console.log("INTAKE PAGE LOADED: Ready for user input");
     restoreFormValues(); // Keep this to restore saved form values
     
-    // Add event listener for submit button
-    const submitButton = document.getElementById("submitButton");
-    if (submitButton) {
-        submitButton.addEventListener("click", function() {
-            // Ensure validateIntake function exists before calling
-            if (typeof validateIntake === "function") {
-                validateIntake();
-            } else {
-                console.error("validateIntake function not found");
-                alert("Error: Validation function not loaded. Please refresh the page.");
-            }
-        });
-    }
+
     
     // Show/hide GUID and DOB fields based on NIH configuration
     if (typeof intake !== 'undefined' && intake.nih === true) {
@@ -108,38 +96,6 @@
         }
     } else {
         console.log("Non-NIH study - GUID and DOB fields remain hidden");
-    }
-  });
-</script>
-
-<!-- Add this script at the end of intake.php, just before the closing </div> tag -->
-<script>
-  // Clear any previous validation state
-  window.validateAlerts = [];
-  
-  // Ensure proper event handling for the submit button
-  document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.getElementById('submitButton');
-    if (submitButton) {
-      // Remove any existing click handlers to prevent duplicates
-      const newButton = submitButton.cloneNode(true);
-      submitButton.parentNode.replaceChild(newButton, submitButton);
-      
-      // Add a clean event handler
-      newButton.addEventListener('click', function(event) {
-        // Prevent the default button behavior
-        event.preventDefault();
-        
-        // Reset validation alerts
-        window.validateAlerts = [];
-        
-        // Call validation function
-        if (typeof validateIntake === 'function') {
-          validateIntake();
-        } else {
-          alert('Validation function not found. Please refresh the page.');
-        }
-      });
     }
   });
 </script>
