@@ -92,7 +92,7 @@
 </form>
 <br> -->
 <!-- <button id="submitButton" class="loadMain" onclick="site = validateSite(), src_subject_id = validateSubject(), subjectkey = validateGUID(), interview_age = validateAge(), sex = validateSex(), handedness = validateHandedness(), /*validateBrightness(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button> -->
-<button id="submitButton" class="loadMain" onclick="validateIntake()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
@@ -107,6 +107,20 @@
   document.addEventListener('DOMContentLoaded', function() {
     console.log("INTAKE PAGE LOADED: Ready for user input");
     restoreFormValues(); // Keep this to restore saved form values
+    
+    // Add event listener for submit button
+    const submitButton = document.getElementById("submitButton");
+    if (submitButton) {
+        submitButton.addEventListener("click", function() {
+            // Ensure validateIntake function exists before calling
+            if (typeof validateIntake === "function") {
+                validateIntake();
+            } else {
+                console.error("validateIntake function not found");
+                alert("Error: Validation function not loaded. Please refresh the page.");
+            }
+        });
+    }
     
     // Show/hide GUID field based on NIH configuration
     if (typeof intake !== 'undefined' && intake.nih === true) {

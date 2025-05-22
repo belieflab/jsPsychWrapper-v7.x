@@ -35,6 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
           alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
         }
         if (result) {
+          // **REMOVED**: Don't load timeline here for start mode
+          // This will be loaded after any necessary validation
+          // $.getScript('exp/timeline.js', function() {
+          //   validateStart();
+          // });
+          
+          // **ADDED**: Load timeline immediately for URL parameter participants
+          // since they don't go through intake validation
           $.getScript('exp/timeline.js', function() {
             validateStart();
           });
