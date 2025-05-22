@@ -6,18 +6,30 @@ $workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $stu
 if (isset($_GET["workerId"])) {
     $workerId = $_GET["workerId"];
     $subjectId = $workerId;
+
+    // Also check for visit and week parameters for all entry points
+    $visit = $_GET["visit"] ?? null;
+    $week = $_GET["week"] ?? null;
 }
 
 // Check for PROLIFIC_PID and set $subjectId
 if (isset($_GET["PROLIFIC_PID"])) {
     $PROLIFIC_PID = $_GET["PROLIFIC_PID"];
     $subjectId = $PROLIFIC_PID;
+
+    // Also check for visit and week parameters for all entry points
+    $visit = $_GET["visit"] ?? null;
+    $week = $_GET["week"] ?? null;
 }
 
 // Check for participantId and set $subjectId
 if (isset($_GET["participantId"])) {
     $participantId = $_GET["participantId"];
     $subjectId = $participantId;
+
+    // Also check for visit and week parameters for all entry points
+    $visit = $_GET["visit"] ?? null;
+    $week = $_GET["week"] ?? null;
 }
 
 // Check for src_subject_id and set related variables
@@ -182,19 +194,31 @@ const writeCandidateKeys = (data) => {
       data.subjectkey = subjectkey;
       data.sex = sex;
       data.site = site;
-      data.subsiteid = subsiteid;
-      data.interview_age = interview_age;
+
       data.phenotype = phenotype;
 
+      // exp/conf.js intake.nda: true
+      if (interview_age) {
+        data.interview_age = interview_age;
+      } 
+      if (subjectkey) {
+        data.subjectkey = subjectkey;
+      }
 
+      // timepoints
       if (visit) {
-          data.visit = visit;
+        data.visit = visit;
       }
       if (week) {
-          data.week = week;
+        data.week = week;
+      }
+
+      // ndar_subject01 bonus
+      if (subsiteid) {
+        data.subsiteid = subsiteid;
       }
       if (arm) {
-          data.arm = arm;
+        data.arm = arm;
       }
     
   }
@@ -214,7 +238,7 @@ const writeCandidateKeys = (data) => {
         data.condition = condition;
     }
 
-    }
+  }
 
   if (workerId) {
 
