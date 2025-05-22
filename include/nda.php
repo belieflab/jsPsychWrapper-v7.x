@@ -57,7 +57,7 @@
   </label>
 </form>
 <br> -->
-<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateNda()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="validateNda()" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
@@ -66,12 +66,30 @@
 </div>
 
 
+<!-- At the end of nda.php, just before the closing </div> tag -->
 <script>
-  // Run the test and load the experiment if successful
 
-document.addEventListener('DOMContentLoaded', function() {
+  // Function to get parameter from URL
+function getParamFromUrl(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    const regexS = "[?&]" + name + "=([^&#]*)";
+    const regex = new RegExp(regexS);
+    const results = regex.exec(window.location.href);
+    if (results == null)
+        return undefined;
+    else 
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+  // Run the test and load the experiment if successful
+  document.addEventListener('DOMContentLoaded', function() {
       testDataSave().then((result) => {
-        if (!result) {
+        if (result) {
+          // First load var.js
+          $.getScript('exp/var.js', function() {
+            // Then load timeline.js
+            $.getScript('exp/timeline.js');
+          });
+        } else {
           alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
         }
       });

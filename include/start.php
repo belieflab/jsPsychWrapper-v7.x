@@ -29,23 +29,17 @@ function counterbalanceParticipants(inputString, modulus) {
   }
 
 // Run the test and load the experiment if successful
-document.addEventListener('DOMContentLoaded', function() {
+  // Run the test and load the experiment if successful
+  document.addEventListener('DOMContentLoaded', function() {
       testDataSave().then((result) => {
-        if (!result) {
-          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
-        }
         if (result) {
-          // **REMOVED**: Don't load timeline here for start mode
-          // This will be loaded after any necessary validation
-          // $.getScript('exp/timeline.js', function() {
-          //   validateStart();
-          // });
-          
-          // **ADDED**: Load timeline immediately for URL parameter participants
-          // since they don't go through intake validation
-          $.getScript('exp/timeline.js', function() {
-            validateStart();
+          // First load var.js
+          $.getScript('exp/var.js', function() {
+            // Then load timeline.js
+            $.getScript('exp/timeline.js');
           });
+        } else {
+          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
         }
       });
     });
