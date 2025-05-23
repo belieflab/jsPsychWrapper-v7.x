@@ -21,10 +21,10 @@
     </div>
 
     <!-- DOB - only show if NIH study -->
-    <div id="dob-container" style="display: none;">
+    <!-- <div id="dob-container" style="display: none;"> -->
         <h4 style="color:black"><label for="dob">Date of Birth:</label></h4>
         <input id="dob" type="date" class="custom-input">
-    </div>
+    <!-- </div> -->
 
 <div class="form-group">
 <h4 style="color:black"><label for="phenotype">Phenotype:</label></h4>
@@ -68,7 +68,7 @@
 </div>
 
 
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', function() {
     console.log("INTAKE PAGE LOADED: Ready for user input");
     restoreFormValues(); // Keep this to restore saved form values
@@ -98,4 +98,4 @@
         console.log("Non-NIH study - GUID and DOB fields remain hidden");
     }
   });
-</script>
+</script> -->
