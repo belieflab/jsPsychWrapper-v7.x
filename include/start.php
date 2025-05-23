@@ -31,16 +31,44 @@ function counterbalanceParticipants(inputString, modulus) {
 // Run the test and load the experiment if successful
   // Run the test and load the experiment if successful
   document.addEventListener('DOMContentLoaded', function() {
-      testDataSave().then((result) => {
-        if (result) {
-          // First load var.js
-          $.getScript('exp/var.js', function() {
-            // Then load timeline.js
-            $.getScript('exp/timeline.js');
-          });
-        } else {
-          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
-        }
-      });
-    });
+  testDataSave().then((result) => {
+    if (result) {
+      // Try to load var.js first
+      $.getScript('exp/var.js')
+        .done(function() {
+          // var.js loaded successfully, now load timeline.js
+          $.getScript('exp/timeline.js')
+            .fail(function(jqxhr, settings, exception) {
+              if (jqxhr.status === 404) {
+                console.log("timeline.js not found");
+              } else {
+                console.error("Failed to load timeline.js:", exception);
+                alert("Error loading timeline.js. Please refresh and try again.");
+              }
+            });
+        })
+        .fail(function(jqxhr, settings, exception) {
+          if (jqxhr.status === 404) {
+            // var.js doesn't exist, try to load timeline.js directly
+            console.log("var.js not found, loading timeline.js directly");
+            $.getScript('exp/timeline.js')
+              .fail(function(jqxhr, settings, exception) {
+                if (jqxhr.status === 404) {
+                  console.log("timeline.js not found");
+                } else {
+                  console.error("Failed to load timeline.js:", exception);
+                  alert("Error loading timeline.js. Please refresh and try again.");
+                }
+              });
+          } else {
+            // Other error occurred with var.js
+            console.error("Failed to load var.js:", exception);
+            alert("Error loading var.js. Please refresh and try again.");
+          }
+        });
+    } else {
+      alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
+    }
+  });
+});
 </script>
