@@ -21,10 +21,10 @@
     </div>
 
     <!-- DOB - only show if NIH study -->
-    <!-- <div id="dob-container" style="display: none;"> -->
+    <div id="dob-container" style="display: none;">
         <h4 style="color:black"><label for="dob">Date of Birth:</label></h4>
         <input id="dob" type="date" class="custom-input">
-    <!-- </div> -->
+    </div>
 
 <div class="form-group">
 <h4 style="color:black"><label for="phenotype">Phenotype:</label></h4>
