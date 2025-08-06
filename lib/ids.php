@@ -1,6 +1,6 @@
 <?php
 // Initialize variables to null
-$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $subsiteid = $interview_age = $phenotype = $visit = $week = $arm = $ID = $condition = null;
+$workerId = $participantId = $PROLIFIC_PID = $subjectId = $src_subject_id = $studyId = $candidateId = $subjectkey = $sex = $site = $subsiteid = $interview_age = $phenotype = $visit = $week = $arm = $ID = null;
 
 // Check for workerId and set $subjectId
 if (isset($_GET["workerId"])) {
@@ -63,7 +63,7 @@ if (isset($_GET["ID"])) {
     // Set Hopkins CPCR variables
     $studyId = $_GET["studyId"] ?? null;
     $visit = $_GET["visit"] ?? null;
-    $condition = $_GET["condition"] ?? null;
+    $arm = $_GET["arm"] ?? null;
 }
 
 
@@ -161,9 +161,6 @@ let arm = "<?php echo $arm?>" || undefined;
 // studyId is the hybrid variable that will be used to pass the appropriate identifier to saveData
 let studyId = "<?php echo $studyId?>" || undefined;
 
-// condition is ARM for the Hopkins CPCR study
-let condition = "<?php echo $condition?>" || undefined;
-
 // ID is set to src_subject_id for the Hopkins CPCR study
 let ID = "<?php echo $ID?>" || undefined;
 
@@ -229,13 +226,10 @@ const writeCandidateKeys = (data) => {
     data.date = isoDate;
     data.studyId = studyId;
     data.handedness = handedness;
+    data.arm = arm;
 
     if (visit) {
         data.visit = visit;
-    }
-
-    if (condition) {
-        data.condition = condition;
     }
 
   }
