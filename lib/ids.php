@@ -220,13 +220,18 @@ const writeCandidateKeys = (data) => {
     
   }
 
+  // Hopkins CPCR
+
   if (ID) {
 
     data.ID = ID;
     data.date = isoDate;
     data.studyId = studyId;
     data.handedness = handedness;
-    data.arm = arm;
+  
+    if (arm) {
+        data.arm = arm;
+    }
 
     if (visit) {
         data.visit = visit;
