@@ -49,22 +49,7 @@ const intake = {
     phenotypes: ["hc"],
 };
 
-// Redirect and Counterbalance Configuration
 
-// choose true if you would like to counterbalance the surveys based on the participant's subjectId
-const counterbalance = true;
 
 let phase = undefined;
 
-// Redirect Configuration (Daisy Chaining)
-const urlConfig = {
-    // redirect only
-    default: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_XXX",
-    // auto-counterbalance
-    standard: {
-        0: "https://taskA",
-        1: "https://questionnaireA",
-        2: "https://taskB",
-        3: "https://questionnaireB",
-    },
-};

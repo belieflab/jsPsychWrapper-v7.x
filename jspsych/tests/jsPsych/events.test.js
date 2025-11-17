@@ -16,7 +16,7 @@ describe('on_finish (trial)', function(){
         type: 'html-keyboard-response',
         stimulus: 'hello',
         on_finish: function(data){
-          key_data = data.key_press;
+          key_data = data.response;
         }
       }
 
@@ -42,7 +42,7 @@ describe('on_finish (trial)', function(){
         type: 'html-keyboard-response',
         stimulus: 'hello',
         on_finish: function(data){
-          data.key_press = 1;
+          data.response = 1;
         }
       }
 
@@ -136,7 +136,7 @@ describe('on_trial_finish (experiment level)', function(){
       jsPsych.init({
         timeline: [trial],
         on_trial_finish: function(data){
-          promise_data.key = data.key_press;
+          promise_data.key = data.response;
         },
         on_finish: function(){
           resolve(promise_data);
@@ -197,7 +197,7 @@ describe('on_data_update', function(){
       jsPsych.init({
         timeline: [trial],
         on_data_update: function(data){
-          promise_data.key = data.key_press;
+          promise_data.key = data.response;
         },
         on_finish: function(){
           resolve(promise_data);
