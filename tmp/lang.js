@@ -63,13 +63,6 @@ switch (language) {
             (score) => english3(score), // Store it as a function that accepts score
         ];
         break;
-         case "version2":
-        instructions = [
-            english0,
-            english1,
-            english2,
-            (score) => english3(score),
-        ];
 }
 
 // Translate the instructions to the specified language

@@ -26,10 +26,10 @@
 
   var block = {
     type: 'image-keyboard-response',
-    choices: ['y', 'n'], // Y or N
+    choices: [89, 78], // Y or N
     prompt: '<p>Press Y to Continue. Press N to end this node of the experiment.</p>',
     on_finish: function(data) {
-      if (data.response == 78) {
+      if (data.key_press == 78) {
         jsPsych.endCurrentTimeline();
       }
     },

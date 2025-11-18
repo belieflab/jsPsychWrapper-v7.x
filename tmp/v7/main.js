@@ -1,12 +1,6 @@
 "use strict";
 
-// 1. FIRST: Initialize jsPsych
-var jsPsych = initJsPsych();
-
-// 2. SECOND: Create timeline
-var timeline = [];
-
-// 3. THIRD: Push elements to timeline
+// main order in which things are pushed to timeline
 timeline.push(preload);
 timeline.push(config);
 timeline.push(welcome);
@@ -14,7 +8,8 @@ timeline.push(...instructionSet);
 timeline.push(procedure);
 timeline.push(dataSave);
 
-// 4. Run the experiment
+// don't allow experiment to start unless subjectId is set
 if (subjectId) {
+    // New jsPsych 7.x syntax
     jsPsych.run(timeline);
 }

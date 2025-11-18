@@ -40,7 +40,7 @@
     timeline: [if_trial],
     conditional_function: function(){
       var data = jsPsych.data.get().last(1).values()[0];
-      if(data.response == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('s')){
+      if(data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('s')){
         return false;
       } else {
         return true;
