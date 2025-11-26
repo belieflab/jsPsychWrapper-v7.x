@@ -36,6 +36,12 @@ var jsPsychColorWheel = (function(jsPsych) {
                 pretty_name: "Theme",
                 default: "light",
                 description: "The color theme to use. Can be 'light' or 'dark'."
+            },
+            stimulus_height: {
+                type: jsPsych.ParameterType.STRING,
+                pretty_name: "Stimulus height",
+                default: "50vh",
+                description: "The maximum height of the stimulus image (e.g., '50vh', '400px', '80%')."
             }
         }
     };
@@ -58,7 +64,7 @@ var jsPsychColorWheel = (function(jsPsych) {
                 borderColor: isDarkTheme ? "#fff" : "#000",
                 previewBorderColor: isDarkTheme ? "#444" : "#ccc",
                 submitBtnStyle: isDarkTheme ? "background-color: #333; color: #fff; border: 1px solid #555;" : "",
-                cursorIconColor: isDarkTheme ? "white" : "black",
+                cursorIconColor: isDarkTheme ? "#cbd5e1" : "#64748b",
                 bodyBackgroundColor: isDarkTheme ? "#000" : "inherit"
             };
 
@@ -105,7 +111,7 @@ var jsPsychColorWheel = (function(jsPsych) {
                 }
 
                 .jspsych-color-wheel-stimulus {
-                    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='${themeStyles.cursorIconColor}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 22 1-1h3l9-9'%3E%3C/path%3E%3Cpath d='M3 21v-3l9-9'%3E%3C/path%3E%3Cpath d='m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z'%3E%3C/path%3E%3C/svg%3E") 2 2, pointer;
+                    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23${isDarkTheme ? 'cbd5e1' : '64748b'}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 22 1-1h3l9-9'%3E%3C/path%3E%3Cpath d='M3 21v-3l9-9'%3E%3C/path%3E%3Cpath d='m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l-3-3Z'%3E%3C/path%3E%3C/svg%3E") 2 2, pointer;
                 }
                 
                 body {
@@ -125,7 +131,7 @@ var jsPsychColorWheel = (function(jsPsych) {
                     font-family: Arial, sans-serif;
                     background-color: ${themeStyles.backgroundColor};">
                     <div id="jspsych-color-wheel-stimulus" class="jspsych-color-wheel-stimulus" style="margin-top: -1rem;">
-                        <img src="${trial.stimulus}" style="max-height: 50vh; width: auto; object-fit: contain;">
+                        <img src="${trial.stimulus}" style="max-height: ${trial.stimulus_height}; width: auto; object-fit: contain;">
                     </div>
 
                     <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
