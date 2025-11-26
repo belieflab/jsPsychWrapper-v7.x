@@ -57,7 +57,7 @@
   </label>
 </form>
 <br> -->
-<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateNda()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="validateNda()" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
@@ -66,14 +66,23 @@
 </div>
 
 
+<!-- At the end of nda.php, just before the closing </div> tag -->
 <script>
-  // Run the test and load the experiment if successful
+// Function to get parameter from URL
+function getParamFromUrl(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    const regexS = "[?&]" + name + "=([^&#]*)";
+    const regex = new RegExp(regexS);
+    const results = regex.exec(window.location.href);
+    if (results == null)
+        return undefined;
+    else 
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
+// Initialize page when DOM is loaded - but DON'T load experiment scripts yet
 document.addEventListener('DOMContentLoaded', function() {
-      testDataSave().then((result) => {
-        if (!result) {
-          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
-        }
-      });
-    });
+    console.log("NDA page loaded, waiting for user to submit form");
+    // Only run initial page setup here, not experiment loading
+});
 </script>

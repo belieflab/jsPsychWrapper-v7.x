@@ -33,10 +33,10 @@ require_once './wrap/lib/ids.php';
 
 <body id='unload' onbeforeunload="return areYouSure()">
 <?php
-   if (isset($_GET["workerId"]) || isset($_GET["PROLIFIC_PID"]) || isset($_GET["participantId"])) {
+  if (isset($_GET["workerId"]) || isset($_GET["PROLIFIC_PID"]) || isset($_GET["participantId"])) {
     include_once "./wrap/include/start.php";
   }
-  if (isset($_GET["src_subject_id"])) {
+  else if (isset($_GET["src_subject_id"]) || isset($_GET["ID"])) {
     include_once "./wrap/include/nda.php";
   } 
   if (!isset($_GET["workerId"]) && !isset($_GET["PROLIFIC_PID"]) && !isset($_GET["participantId"]) && !isset($_GET["src_subject_id"])) {
@@ -47,13 +47,13 @@ require_once './wrap/lib/ids.php';
 <footer>
   <!-- load config first! -->
   <script type="text/javascript" src="./wrap/lib/redirect.js"></script>
+
   <script type="text/javascript" src="./exp/conf.js"></script>
   <!-- load wrapper dependencies -->
   <script type="text/javascript" src="./wrap/lib/fn.js"></script>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="./exp/fn.js"></script>
-  <?php require_once './exp/var.php'; ?>
-  <script type="text/javascript" src="./exp/lang.js"></script>
+
 </footer>
 
 </html>

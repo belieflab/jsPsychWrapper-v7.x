@@ -11,21 +11,20 @@
     </select>
 </div>
 
-
-  
     <h4 style="color:black">Subject ID:</h4>
-    <input required id="subject" type="text" name="subject" minlength="8" maxlength="8" class="custom-input">
+    <input required id="subject" type="text" name="subject" class="custom-input">
     
-    <!-- GUID -->
-    <h4 style="color:black">GUID:</h4>
-    <input required id="guid" type="text" name="guid" minlength="12" maxlength="12" oninput="this.value = this.value.toUpperCase()" class="custom-input">
-    <!-- <input required type="hidden" id="guid" name="guid" value="< ?php echo $guid ?>"> -->
+    <!-- GUID - only show if NIH study -->
+    <div id="guid-container" style="display: none;">
+        <h4 style="color:black">GUID:</h4>
+        <input id="guid" type="text" name="guid" minlength="12" maxlength="12" oninput="this.value = this.value.toUpperCase()" class="custom-input">
+    </div>
 
-    <!-- <button onclick="submitIntake()">submit subjectid</button> -->
-
-    <h4 style="color:black"><label for="dob">Date of Birth:</label></h4>
-<input required id="dob" type="date" class="custom-input">
-
+    <!-- DOB - only show if NIH study -->
+    <div id="dob-container" style="display: none;">
+        <h4 style="color:black"><label for="dob">Date of Birth:</label></h4>
+        <input id="dob" type="date" class="custom-input">
+    </div>
 
 <div class="form-group">
 <h4 style="color:black"><label for="phenotype">Phenotype:</label></h4>
@@ -33,8 +32,6 @@
         <option value="">---</option>
     </select>
 </div>
-
-
 
 </div>
 
@@ -50,7 +47,6 @@
   <span class="checkmark"></span>
 </label>
 
-    <!-- <label for="handedness"><b>Are you right or left handed?</b></label> -->
     <h4 style="color:black">Which is your dominant hand?</h4>
 
 <label class="custom-radio-button">Left
@@ -63,35 +59,7 @@
   <span class="checkmark"></span>
 </label>
 
-
-
-        <!-- <span class="checkmark"></span> -->
-
-    <!-- <p style="color:black"><b>Before proceeding to the task, please confirm the following are true:</b></p>
-    <label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp  
-    <input type="checkbox" name="brightness" id="brightness" value="1"/>
-    </label> -->
-    <!-- <br>
-    <label class="container">Headphones plugged in? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      
-    <input type="checkbox" name="headphones" id="headphones" value="1"/>
-    </label>
-    <br>
-    <label class="container">Headphone volume is set to 50% &nbsp&nbsp&nbsp  
-    <input type="checkbox" name="volume" id="volume" value="1"/>
-  </label> -->
-  <!-- <label class="container">Headphones plugged in? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp               
-    <input type="checkbox"> 
-    <br>
-  </label>
-
-  <label class="container">Headphones volume at 50%? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp          
-    <input type="checkbox"> 
-    <br>
-  </label>
-</form>
-<br> -->
-<!-- <button id="submitButton" class="loadMain" onclick="site = validateSite(), src_subject_id = validateSubject(), subjectkey = validateGUID(), interview_age = validateAge(), sex = validateSex(), handedness = validateHandedness(), /*validateBrightness(), validateHeadphones(), validateVolume(),*/ submitIntake()" type="button">SUBMIT</button> -->
-<button id="submitButton" class="loadMain" onclick="$.getScript('exp/timeline.js'), validateIntake()" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
@@ -100,14 +68,34 @@
 </div>
 
 
-<script>
-  // Run the test and load the experiment if successful
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("INTAKE PAGE LOADED: Ready for user input");
+    restoreFormValues(); // Keep this to restore saved form values
+    
 
-document.addEventListener('DOMContentLoaded', function() {
-      testDataSave().then((result) => {
-        if (!result) {
-          alert("ERROR: Failed save data check.\nPlease make sure you are using Chrome, Firefox, or Safari.");
+    
+    // Show/hide GUID and DOB fields based on NIH configuration
+    if (typeof intake !== 'undefined' && intake.nih === true) {
+        console.log("NIH study detected - showing GUID and DOB fields");
+        
+        // Show and require GUID field
+        const guidContainer = document.getElementById("guid-container");
+        const guidInput = document.getElementById("guid");
+        if (guidContainer && guidInput) {
+            guidContainer.style.display = "block";
+            guidInput.setAttribute("required", "required");
         }
-      });
-    });
-</script>
+        
+        // Show and require DOB field
+        const dobContainer = document.getElementById("dob-container");
+        const dobInput = document.getElementById("dob");
+        if (dobContainer && dobInput) {
+            dobContainer.style.display = "block";
+            dobInput.setAttribute("required", "required");
+        }
+    } else {
+        console.log("Non-NIH study - GUID and DOB fields remain hidden");
+    }
+  });
+</script> -->

@@ -38,7 +38,7 @@ switch (version) {
         <p>You have successfully completed this task and your data has been saved.</p>
         <p>Your final score is ${score}.</p>
         ${
-            !src_subject_id // redirects only occur for workerId, participantId, PROLIFIC_PID
+            !src_subject_id && !ID // redirects only occur for workerId, participantId, PROLIFIC_PID
                 ? `<p>You will be redirected to the next part of the experiment; If you are not redirected please click <a href="${redirectLink}">here</a>.</p>`
                 : ""
         }`;
