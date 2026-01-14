@@ -79,33 +79,31 @@ var jsPsychColorWheel = (function(jsPsych) {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: ${themeStyles.modalBackgroundColor};
+                    background-color: transparent;
                     z-index: 1000;
-                    display: none;
-                    justify-content: center;
-                    align-items: center;
+                    pointer-events: none;
                 }
 
                 .jspsych-color-wheel-modal-content {
                     background-color: ${themeStyles.modalContentBackgroundColor};
-                    padding: 20px;
-                    border-radius: 10px;
+                    padding: 10px;
+                    border-radius: 8px;
                     position: relative;
-                    max-width: 600px;
-                    width: 90%;
                     text-align: center;
                     color: ${themeStyles.textColor};
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                    pointer-events: auto;
                 }
 
                 .jspsych-color-wheel-close {
                     position: absolute;
-                    right: 10px;
-                    top: 10px;
-                    font-size: 32px;
+                    right: 5px;
+                    top: 5px;
+                    font-size: 20px;
                     cursor: pointer;
                     background: none;
                     border: none;
-                    padding: 5px 10px;
+                    padding: 2px 6px;
                     line-height: 1;
                     color: ${themeStyles.textColor};
                 }
@@ -161,11 +159,11 @@ var jsPsychColorWheel = (function(jsPsych) {
                     <div id="color-wheel-modal" class="jspsych-color-wheel-modal">
                         <div class="jspsych-color-wheel-modal-content">
                             <button class="jspsych-color-wheel-close">&times;</button>
-                            <div style="display: flex; align-items: center; gap: 20px; justify-content: center;">
-                                <canvas id="color-wheel" width="400" height="400" style="border-radius: 50%;"></canvas>
-                                <div id="color-preview" style="width: 100px; height: 100px; border: 2px solid ${themeStyles.previewBorderColor}; border-radius: 8px;"></div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                <canvas id="color-wheel" width="200" height="200" style="width: 18.5vh; height: 18.5vh; border-radius: 50%;"></canvas>
+                                <div id="color-preview" style="width: 30px; height: 30px; border: 2px solid ${themeStyles.previewBorderColor}; border-radius: 4px;"></div>
+                                <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="padding: 4px 10px; font-size: 12px; ${themeStyles.submitBtnStyle}" disabled>Submit</button>
                             </div>
-                            <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="margin-top: 20px; ${themeStyles.submitBtnStyle}" disabled>Submit</button>
                         </div>
                     </div>
                 </div>
@@ -185,8 +183,40 @@ var jsPsychColorWheel = (function(jsPsych) {
             const submitButton = display_element.querySelector("#jspsych-color-wheel-submit");
 
             // Modal controls
-            const openModal = () => {
+            const openModal = (event) => {
+                const clickX = event.clientX;
+                const clickY = event.clientY;
+                
+                const modalContent = modal.querySelector('.jspsych-color-wheel-modal-content');
+                modalContent.style.position = 'fixed';
+                
+                // Get modal dimensions (after it's displayed)
                 modal.style.display = "flex";
+                const rect = modalContent.getBoundingClientRect();
+                const modalWidth = rect.width;
+                const modalHeight = rect.height;
+                
+                // Calculate position with bounds checking
+                let left = clickX;
+                let top = clickY;
+                
+                // Keep within viewport (adjusted for left-aligned modal)
+                if (left + modalWidth > window.innerWidth) {
+                    left = window.innerWidth - modalWidth - 10;
+                }
+                if (left < 0) {
+                    left = 10;
+                }
+                if (top + modalHeight/2 > window.innerHeight) {
+                    top = window.innerHeight - modalHeight/2 - 10;
+                }
+                if (top - modalHeight/2 < 0) {
+                    top = modalHeight/2 + 10;
+                }
+                
+                modalContent.style.left = `${left}px`;
+                modalContent.style.top = `${top}px`;
+                modalContent.style.transform = 'translateY(-50%)';  // Only center vertically
             };
 
             showButton.onclick = openModal;
@@ -275,8 +305,8 @@ var jsPsychColorWheel = (function(jsPsych) {
             // Handle clicks on the wheel
             canvas.addEventListener("click", (event) => {
                 const rect = canvas.getBoundingClientRect();
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
+                const x = (event.clientX - rect.left) * (canvas.width / rect.width);
+                const y = (event.clientY - rect.top) * (canvas.height / rect.height);
                 
                 const dx = x - radius;
                 const dy = y - radius;
