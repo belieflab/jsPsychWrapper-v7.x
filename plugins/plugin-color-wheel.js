@@ -160,8 +160,8 @@ var jsPsychColorWheel = (function(jsPsych) {
                         <div class="jspsych-color-wheel-modal-content">
                             <button class="jspsych-color-wheel-close">&times;</button>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                                <canvas id="color-wheel" width="400" height="400" style="width: 18.5vh; height: 18.5vh; border-radius: 50%;"></canvas>
-                                <div id="color-preview" style="width: 80px; height: 80px; border: 2px solid ${themeStyles.previewBorderColor}; border-radius: 4px;"></div>
+                                <canvas id="color-wheel" width="600" height="600" style="width: 24.5vh; height: 24.5vh; border-radius: 50%;"></canvas>
+                                <div id="color-preview" style="width: 100px; height: 100px; border: 2px solid ${themeStyles.previewBorderColor}; border-radius: 4px;"></div>
                                 <button id="jspsych-color-wheel-submit" class="jspsych-btn" style="padding: 4px 10px; font-size: 12px; ${themeStyles.submitBtnStyle}" disabled>Submit</button>
                             </div>
                         </div>
