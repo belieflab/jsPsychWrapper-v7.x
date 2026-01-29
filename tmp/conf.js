@@ -10,14 +10,14 @@ let debug = true; // Default debug mode setting for the experiment
 
 // Experiment Version
 // Options: "standard"
-const version = "standard"; // Current version of the experiment
+const version = "dotprobe_poc"; // Current version of the experiment
 
 // General Settings
-const experimentName = "Stroop Task";
-const experimentAlias = `stroop_${version}`;
+const experimentName = "Dot-Probe Task"; // Name of the experiment
+const experimentAlias = `dotprobe_${version}`;
 
 // Experiment Language
-const language = "english"; // Language setting for the experiment
+const language = "English"; // Language setting for the experiment
 
 // User Interface Theme
 // Options: "light", "dark", "gray", "white" (useful for images with white backgrounds)
