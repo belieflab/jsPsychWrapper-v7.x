@@ -1,0 +1,4 @@
+6f48ba4f90a0c778ad0679d9e8b3f6c49a82c2c8b4efe40b1eb519795b4bbc84  wrap/vendor/jspsych/extension-webgazer-1.0.3.js
+f862169cd17e759edc8b7ded4d76920acf0e4244a2ab97bd71f9693aa4f398af  wrap/vendor/jspsych/plugin-webgazer-calibrate-1.0.3.js
+9f7bb108890dc0b5903f6de017c3b631f0c6f8c57d1f5b329ea9c945332b45f2  wrap/vendor/jspsych/plugin-webgazer-init-camera-1.0.3.js
+497584a41500c099fe29bc5e143cb56d72d62c25e959ba7627f63491e86336b2  wrap/vendor/jspsych/plugin-webgazer-validate-1.0.3.js
