@@ -59,7 +59,7 @@
   <span class="checkmark"></span>
 </label>
 
-<button id="submitButton" class="loadMain" type="button">SUBMIT</button>
+<button id="submitButton" class="loadMain" onclick="validateIntake()" type="button">SUBMIT</button>
 
 <h5><?php echo gitCommitHash();?></h5>
 
