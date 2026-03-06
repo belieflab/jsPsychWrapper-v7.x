@@ -296,7 +296,7 @@ const writeCandidateKeys = (data) => {
 
   }
 
-  if (phase) {
+  if (phase !== null && typeof phase !== "undefined" && phase !== "") {
       data.phase = phase;
   }
 
